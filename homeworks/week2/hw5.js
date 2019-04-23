@@ -2,9 +2,11 @@
 // repeat 的話就是回傳重複 n 次之後的字串。
 function join(str, concatStr) {
   let newStr = '';
-  for (let i = 0; i < str.length; i += 1) {
+  for (let i = 0; i < str.length - 1; i += 1) {
     newStr += str[i] + concatStr;
   }
+  // for loop 外再塞一個 concatStr
+  newStr += str[str.length - 1];
   return newStr;
 }
 
@@ -16,5 +18,9 @@ function repeat(str, times) {
   return newStr;
 }
 
-console.log(join(['a', 1, 'b', 2, 'c', 3], ','));
+console.log(join(['a', 'b', 'c'], '!!'));
+console.log(join(['a', 'b', 'c'], ' '));
+console.log(join(['a', 'b', 'c'], ''));
+console.log(join(['a', 'b', 'c'], ','));
+console.log(join([], '!'));
 console.log(repeat('yoyo', 2));
