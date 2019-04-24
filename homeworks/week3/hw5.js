@@ -1,11 +1,10 @@
 function add(a, b) {
   let A = a;
   let B = b;
-  let reZero = '0'.repeat(Math.abs(a.length - b.length));
+  const reZero = '0'.repeat(Math.abs(a.length - b.length));
 
   if (A.length > B.length) {
-    reZero += B;
-    B = reZero;
+    B = reZero + b;
   } else {
     A = reZero + a;
   }

@@ -5,7 +5,6 @@ function stars(n) {
     strArr.push(str.repeat(i));
   }
   return strArr;
-  // console.log(n);
 }
 
 module.exports = stars;

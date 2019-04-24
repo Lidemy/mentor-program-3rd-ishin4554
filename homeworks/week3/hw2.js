@@ -8,6 +8,5 @@ function alphaSwap(str) {
     }
   }
   return newStr;
-  // console.log(str);
 }
 module.exports = alphaSwap;

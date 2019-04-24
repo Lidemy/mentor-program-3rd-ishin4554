@@ -5,7 +5,6 @@ function isPrime(n) {
     }
   }
   return n !== 1;
-  // console.log(n);
 }
 
 module.exports = isPrime;
