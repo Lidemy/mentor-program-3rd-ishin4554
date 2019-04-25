@@ -128,7 +128,7 @@ None
 curl DELETE 'http://myrestaurant.com/api/v1/restaurants/<restaurant ID>'
 --header "Authorization: <user token>"
 ```
-**Request Example**
+**Example Response**
 ```JSON
 204 No Content
 ```
@@ -162,6 +162,7 @@ Property |Type|Description
 ```shell
 curl POST 'http://myrestaurant.com/api/v1/restaurants/<restaurant ID>'
 --header "Authorization: <user token>"
+--data "{'name':'摩斯漢堡'}"
 ```
 
 **Example Response**
