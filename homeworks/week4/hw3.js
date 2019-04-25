@@ -9,11 +9,8 @@ switch (method) {
   // Delete specific id book
   case 'delete':
     request.delete(`https://lidemy-book-store.herokuapp.com/books/${id}`,
-      (err) => {
-        if (err) {
-          console.log(`Delete Error: ${err}`);
-        }
-        console.log('Delete success');
+      () => {
+        console.log(`Delete ${id}`);
       });
     break;
   // Create new book with name
@@ -22,14 +19,11 @@ switch (method) {
       url: 'https://lidemy-book-store.herokuapp.com/books',
       form: {
         id: '',
-        name: id,
+        name: process.argv[3],
       },
     },
-    (err) => {
-      if (err) {
-        console.log(`Create Error: ${err}`);
-      }
-      console.log('Create success');
+    () => {
+      console.log(`Create book ${process.argv[3]}`);
     });
     break;
   // Update specific id book's name
@@ -40,11 +34,8 @@ switch (method) {
         name: newName,
       },
     },
-    (err) => {
-      if (err) {
-        console.log(`Update error: ${err}`);
-      }
-      console.log('Update success');
+    () => {
+      console.log(`Create book ${newName}`);
     });
     break;
   // Read specific id book
@@ -52,7 +43,11 @@ switch (method) {
     request.get(`https://lidemy-book-store.herokuapp.com/books/${id}`,
       (err, res, body) => {
         const obj = JSON.parse(body);
-        console.log(obj.name);
+        if (obj.name) {
+          console.log(obj.name);
+        } else {
+          console.log(`item ${id} doesn't exist`);
+        }
       });
     break;
   // List first 20 books
@@ -60,7 +55,7 @@ switch (method) {
     request.get('https://lidemy-book-store.herokuapp.com/books?_limit=20',
       (err, res, body) => {
         const obj = JSON.parse(body);
-        obj.forEach(b => console.log(b.name));
+        obj.forEach(b => console.log(`${b.id} ${b.name}`));
       });
     break;
   default:

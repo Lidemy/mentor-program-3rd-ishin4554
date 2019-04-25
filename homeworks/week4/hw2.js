@@ -11,6 +11,6 @@ if (process.argv[2] === 'read') {
   request('https://lidemy-book-store.herokuapp.com/books?_limit=20',
     (err, res, body) => {
       const obj = JSON.parse(body);
-      obj.forEach(b => console.log(b.name));
+      obj.forEach(b => console.log(`${b.id} ${b.name}`));
     });
 }
