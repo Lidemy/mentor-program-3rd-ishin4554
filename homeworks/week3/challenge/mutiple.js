@@ -32,10 +32,5 @@ function multiple(a, b) {
   }
   return sumLs.reverse().join('').replace(/^[0]+/, '');
 }
-console.log(multiple('999', '9999'));
-console.log(multiple('9999', '999'));
-console.log(multiple('223', '112'));
-console.log(multiple('6342', '1'));
-
 
 module.exports = multiple;
