@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box; 
+}
+button:focus{
+  outline: 0;
+}
+
+nav {
+  background-color: #fd8b8a;
+}
+nav ul {
+  margin: 0;
+  padding: 30px ;
+}
+nav ul li {
+  display: inline-block;
+  cursor: pointer;
+}
+.nav__logo{
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.nav__logo ~ * {
+  color:  rgba(225,225,225,0.7);
+  margin-left: 20px;
+  display: inline-block;
+}
+.nav__logo ~ *:hover{
+  color: white;
+}
+.landing {
+  width: 100%;
+  background-color: rgba(225,225,225,0.8);
+  padding: 100px 0px;
+}
+.landing > * {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+}
+.landing__title ~ *{
+  margin-top: 30px;
+}
+.landing__title{
+  -webkit-text-stroke: 2px black;
+  color: transparent;
+  font-size: 108px;
+}
+.landing__title--highlight{
+  transition: .2s cubic-bezier(0, 0.74, 0.55, 1.01); 
+}
+.landing__title--highlight:hover{
+  color: black;
+}
+.landing__intro {
+  font-weight: lighter;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+}
+.landing__learn-more {
+  width: auto;
+  position: relative;
+  border: 1px solid #fd8b8a;
+  background-color: transparent;
+  color: #fd8b8a;
+  border-radius: 2px;
+  padding: 10px 20px;
+  margin-left: 15%;
+  transition: 0.2s cubic-bezier(0, 0.74, 0.55, 1.01); 
+}
+.landing__learn-more:hover {
+  background-color: #fd8b8a;
+  color: #fff;
+}
+main {
+  padding: 80px 0;
+  width: 70%;
+  margin: 0 auto;
+}
+section{
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+}
+.section__title{
+  font-size: 24px;
+}
+.section__content{
+  font-weight: lighter;
+  line-height: 1.2em;
+  width: 80%;  
+}
+.section__view-detail{
+  width: auto;
+  position: relative;
+  border: 1px solid #fd8b8a;
+  color: #fd8b8a;
+  border-radius: 2px;
+  padding: 8px 15px;
+  margin-top: 10px;
+}
+.section__view-detail:hover {
+  background-color: #fd8b8a;
+  color: #fff;
+}
+footer {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 70%;
+}
+@media (max-width:1000px) {
+  section {
+    width: 100%;
+  }
+  footer {
+    width: 100%;
+  }
+  .footer__copywrite {
+    margin-left: 15%;
+  }
+  section {
+    margin-top: 20px;
+  }
+}
+
