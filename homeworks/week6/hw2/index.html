@@ -6,12 +6,16 @@
     <link rel ="stylesheet" href="./css/main.css"/> 
     <link rel ="stylesheet" href="./css/normalize.css"/> 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900|Noto+Serif+TC:200,300,400,500,600,700,900" rel="stylesheet">
+    <!-- Facebook -->
+    <meta property="og:title" content="成為前端工程師的四週年回顧" />
+    <meta property="og:url" content="https://www.medium.com" />
+    <meta property="og:description" content="如果你覺得這個標題似曾相識，這很正常。會寫這篇文章是因為之前看到Lin Simon 寫了這篇：成為UI/UX 設計師的三週年回顧。" />
   </head>
   <body>
     <nav>
       <div class="nav">
         <div class="nav__home">
-            <svg class="nav__logo svg--icon">
+            <svg class="nav__logo svg--icon" viewBox="8 8 30 30">
               <path d="M5 40V5h35v35H5zm8.56-12.627c0 .555-.027.687-.318 1.03l-2.457 2.985v.396h6.974v-.396l-2.456-2.985c-.291-.343-.344-.502-.344-1.03V18.42l6.127 13.364h.714l5.256-13.364v10.644c0 .29 0 .342-.185.528l-1.848 1.796v.396h9.19v-.396l-1.822-1.796c-.184-.186-.21-.238-.21-.528V15.937c0-.291.026-.344.21-.528l1.823-1.797v-.396h-6.471l-4.622 11.542-5.203-11.542h-6.79v.396l2.14 2.64c.239.292.291.37.291.768v10.353z"></path>
             </svg>
             <h1 class="nav__title">Huli's blog</h1>
@@ -20,7 +24,7 @@
             <svg class="nav__search svg--icon">
                 <path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path>
               </svg>
-            <svg class="nav__alarm svg--icon" fill="black">
+            <svg class="nav__alarm svg--icon" fill="black" viewBox="-290 411 25 25">
               <path d="M-273.327 423.67l-1.673-1.52v-3.646a5.5 5.5 0 0 0-6.04-5.474c-2.86.273-4.96 2.838-4.96 5.71v3.41l-1.68 1.553c-.204.19-.32.456-.32.734V427a1 1 0 0 0 1 1h3.49a3.079 3.079 0 0 0 3.01 2.45 3.08 3.08 0 0 0 3.01-2.45h3.49a1 1 0 0 0 1-1v-2.59c0-.28-.12-.55-.327-.74zm-7.173 5.63c-.842 0-1.55-.546-1.812-1.3h3.624a1.92 1.92 0 0 1-1.812 1.3zm6.35-2.45h-12.7v-2.347l1.63-1.51c.236-.216.37-.522.37-.843v-3.41c0-2.35 1.72-4.356 3.92-4.565a4.353 4.353 0 0 1 4.78 4.33v3.645c0 .324.137.633.376.85l1.624 1.477v2.373z"></path>
             </svg>
             <img class="nav__avatar" src="https://cdn-images-1.medium.com/fit/c/64/64/1*0yRCCkYogS59MGdw_GsUxg.jpeg"/>
@@ -116,7 +120,7 @@
             <svg class="media__save svg--icon">
               <path d="M19.385 4h-9.77A2.623 2.623 0 0 0 7 6.615V23.01a1.022 1.022 0 0 0 1.595.847l5.905-4.004 5.905 4.004A1.022 1.022 0 0 0 22 23.011V6.62A2.625 2.625 0 0 0 19.385 4zM21 23l-5.91-3.955-.148-.107a.751.751 0 0 0-.884 0l-.147.107L8 23V6.615C8 5.725 8.725 5 9.615 5h9.77C20.275 5 21 5.725 21 6.615V23z"></path>
             </svg>
-            <svg class="media__option svg--icon">
+            <svg class="media__option svg--icon" viewBox="-480.5 272.5 21 21">
               <path d="M-463 284.6c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6-1.6.7-1.6 1.6.7 1.6 1.6 1.6zm0 .9c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zm-7-.9c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6-1.6.7-1.6 1.6.7 1.6 1.6 1.6zm0 .9c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zm-7-.9c.9 0 1.6-.7 1.6-1.6s-.7-1.6-1.6-1.6-1.6.7-1.6 1.6.7 1.6 1.6 1.6zm0 .9c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"></path>
             </svg>
           </div>
@@ -124,7 +128,7 @@
         <hr />
         <div class="footer__following">
           <div class="following__author">
-            <img class="following__avatar avater--img"></img>
+            <img class="following__avatar avater--img" src="https://cdn-images-1.medium.com/fit/c/120/120/1*WQyJUJBQpBNIHH8GEWE6Sg.jpeg"></img>
             <div class="following__info">
               <div class="following__title text-h4">Huli</div>
               <div class="following__date text-status">Medium member since Nov 2018</div>
@@ -133,7 +137,7 @@
             <button>Following</button>
           </div>
           <div class="following__author">
-            <div class="following__avatar avater--img"></div>
+            <img class="following__avatar avater--img" src="https://cdn-images-1.medium.com/fit/c/120/120/1*e--bXnSFmXry_h5Vh0EG6Q.jpeg" />
             <div class="following__info">
               <div class="following__title text-h4">Huli's blog</div>
               <div class="following__intro text-caption">原來將部落格設在 logdown，趁還沒消失前趕快搬出來。都是一些與科技或是程式相關的文章。</div>
@@ -202,7 +206,7 @@
       <div class="comment">
         <div class="comment__reponse">
           <div class="response__text text-status">Response</div>
-          <input type="text" />
+          <input type="text" placeholder="Write a reponse ..." />
         </div>
         <hr />
         <div class="comment__intro">Conversation between Breant Costa and Huli.</div>

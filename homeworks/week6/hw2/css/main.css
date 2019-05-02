@@ -124,6 +124,11 @@ nav{
   align-items: center;
   justify-content: center;
 }
+.nav__alarm{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
 .nav__avatar{
   width: 40px;
   height: 40px;
@@ -206,6 +211,8 @@ aside{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 70px;
+
 }
 
 .article__aside button{
@@ -406,6 +413,7 @@ hr{
   border-radius: 2px;
   border: .5px solid #cccccc;
   box-shadow: .5px .5px 5px rgba(0,0,0,0.1);
+  padding: 30px;
 }
 .comment__reponse input:focus{
   outline: none;
@@ -466,3 +474,41 @@ hr{
 }
 
 /* RWD */
+@media (max-width:1000px){
+  aside{
+    display: none;
+  }
+  .footer__following{
+    display: flex;
+    flex-direction: column;
+  }
+  .suggestion{
+    display: flex;
+    flex-direction: column;
+  }
+  .suggestion__card{
+    margin-top: 30px;
+  }
+  .comment{
+    width: 90%;
+  }
+  .following__author{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .following__info{
+    width: 100%;
+    margin-top: 10px;
+  }
+  .following__avatar{
+    margin-top: 10px;
+  }
+  .following__author button{
+    margin-top: 10px;
+  }
+  .text-h2{
+    line-height: 1.8em;
+  }
+} 
