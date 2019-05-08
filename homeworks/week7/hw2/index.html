@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HW2: Google 表單</title>
+    <meta charset="utf-8" />
+    <link href="./css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="top"></div>
+    <main class="main">
+      <h1>程式導師實驗計畫第三期報名表單</h1>
+      <p>詳情請參考：<a href="https://medium.com/hulis-blog/mentor-program-3rd-47a2e85e33b3">https://medium.com/hulis-blog/mentor-program-3rd-47a2e85e33b3</a>
+      <br />填完之後請務必按照文章內的說明再寄信給我，才算報名成功喔</p>
+      <p class="text-highlight">*必填</p>
+      <form class="form">
+        <section class="form__section must">
+          <h3>電子郵件地址<span class="text-highlight">*</span></h3>
+          <input type="email" name="email" placeholder="你的電子郵件" />
+        </section>
+        <section class="form__section must">
+          <h3>暱稱<span class="text-highlight">*</span></h3>
+          <h4>該如何稱呼你</h4>
+          <input type="text" name="name" placeholder="您的回答" />
+        </section>
+        <section class="form__section must">
+          <h3>報名類型<span class="text-highlight">*</span></h3>
+          <div class="radio"> 
+            <input type="radio" name="class" value="基礎班" />從零到一基礎班（兩個月後開始收保證金 5000，淘汰不退還，結業後兩個月內找到工作付一個月半薪水，沒工作不用付。<br/>
+            <input type="radio" name="class" value="加強班" />在職工程師加強班（兩個月後開始收保證金 5000，三個月時收學費 35000 元台幣，被淘汰不退還）
+          </div>
+        </section>
+        <section class="form__section must">
+          <h3>現在的職業<span class="text-highlight">*</span></h3>
+          <h4>範例：學生、前端工程師、待業中、業務</h4>
+          <input type="text" name="job" placeholder="您的回答" />
+        </section>
+        <section class="form__section must">
+          <h3>怎麼知道這個計畫的？<span class="text-highlight">*</span></h3>
+          <input type="text" name="how" placeholder="您的回答" />
+        </section>
+        <section class="form__section must">
+          <h3>是否有程式相關背景？<span class="text-highlight">*</span></h3>
+          <h4>範例：無、高中時候學過C++、學過一點網頁前端、目前在資策會上課...</h4>
+          <input type="text" name="background" placeholder="您的回答" />
+        </section>
+        <section class="form__section">
+          <h3>其他</h3>
+          <h4>任何你想說的</h4>
+          <input type="text" name="other" placeholder="您的回答" />
+        </section>
+        <button>提交</button>
+      </form>
+      <p>請勿利用 Google 表單送出密碼</p>
+    </main>
+  </body>  
+  <script src="./js/main.js"></script>
+</html>

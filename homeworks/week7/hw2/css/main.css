@@ -1,0 +1,84 @@
+body{
+  margin: 0;
+  background-color: #f8ede6;
+  padding: 0 0 60px 0;
+}
+.top{
+  height: 250px;
+  background-color: #f5b790;
+}
+.main{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 20px 50px;
+  border-top: 10px solid #FF884B;
+  margin-top: -80px;
+  background-color: #fff;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1)
+}
+.main>p{
+  font-size: 14px;
+}
+.form{
+  margin-top: 10px;
+}
+.form__section {
+  margin-top: 2px;
+  padding: 25px 40px 25px 10px;
+}
+.form__section input[type="radio"] {
+  margin-top: 20px;
+}
+.form__section input[type="text"], input[type="email"] {
+  font-size: 16px;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.4);
+  background-color: transparent;
+}
+.form__section input[type="text"]:focus, input[type="email"]:focus {
+  outline: none;
+  border-bottom: 2px solid red;
+}
+
+button{
+  margin-top: 20px;
+  background-color: #FF884B;
+  color: #fff;
+  padding: 8px 30px;
+  border-radius: 5px;
+  border: none;
+}
+button:focus{
+  outline: none;
+}
+
+/* text style */
+.text-highlight{
+  color: red;
+}
+h1{
+  font-weight: 400;
+}
+h3{
+  font-weight: 500;
+  margin: 0;
+}
+.form__section h4 {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* configuration class */
+.highlight {
+  background-color: rgba(255,0,0,0.1);
+}
+
+@media (max-width: 600px){
+  .main{
+    width: 80%;
+  }
+}
