@@ -32,8 +32,8 @@ textElements.forEach((element) => {
       element.parentNode.classList.add('highlight');
       if (!element.parentNode.querySelector('p')) {
         showText(element, '這是必填問題');
-        state = false;
       }
+      state = false;
     } else if (element.parentNode.querySelector('p')) {
       removeText(element);
       state = true;
@@ -46,8 +46,8 @@ emailElement.addEventListener('focusout', () => {
     emailElement.parentNode.classList.add('highlight');
     if (!emailElement.parentNode.querySelector('p')) {
       showText(emailElement, '請輸入正確的 email');
-      state = false;
     }
+    state = false;
   } else if (emailElement.parentNode.querySelector('p')) {
     removeText(emailElement);
     state = true;
@@ -60,20 +60,21 @@ radioElement.forEach((element) => {
       element.parentNode.parentNode.classList.add('highlight');
       if (!element.parentNode.querySelector('p')) {
         showText(element, '這是必填問題');
-        state = false;
       }
+      state = false;
     } else if (element.parentNode.querySelector('p')) {
       element.parentNode.parentNode.classList.remove('highlight');
       const temp = element.parentNode.querySelector('p');
       element.parentNode.removeChild(temp);
+      state = true;
     }
   });
 });
 
 document.querySelector('button').addEventListener('click', (e) => {
   e.preventDefault();
+  checkFinal();
   if (state === false) {
-    checkFinal();
     alert('提交失敗');
   } else {
     const obj = {
