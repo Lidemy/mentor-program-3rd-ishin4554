@@ -1,0 +1,43 @@
+*{
+  border: 1px solid #000;
+}
+html, body {
+  width: 100%;
+}
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  flex-wrap: wrap;
+}
+li {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+.bot{
+  display: flex;
+  justify-content: space-around;
+}
+.bot img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.info > * {
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 0;
+}
