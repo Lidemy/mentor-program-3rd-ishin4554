@@ -1,5 +1,6 @@
 const request = new XMLHttpRequest();
 const url = 'https://lidemy-book-store.herokuapp.com/posts';
+let state = 0;
 
 request.onload = () => {
   if (request.status >= 200 && request.status < 400) {
@@ -8,7 +9,11 @@ request.onload = () => {
     result.forEach((comment) => {
       const item = document.createElement('li');
       item.innerHTML = comment.content;
-      document.querySelector('ul').prepend(item);
+      if (state < 1) {
+        document.querySelector('ul').append(item);
+      } else {
+        document.querySelector('ul').prepend(item);
+      }
     });
     document.querySelector('input').value = '';
   } else {
@@ -20,10 +25,11 @@ request.onerror = () => {
   console.log(request.responseText);
 };
 
-request.open('GET', `${url}?_limit=20&_sort=id&_order=asc`, true);
+request.open('GET', `${url}?_limit=20&_sort=id&_order=desc`, true);
 request.send();
 
 document.querySelector('.btn').onclick = () => {
+  state = 1;
   const content = document.querySelector('input').value;
   request.open('POST', url, true);
   request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
