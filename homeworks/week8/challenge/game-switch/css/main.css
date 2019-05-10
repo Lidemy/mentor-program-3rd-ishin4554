@@ -1,6 +1,3 @@
-*{
-  /* border: 1px solid #000; */
-}
 html, body {
   width: 100%;
   margin: 0;
@@ -36,7 +33,7 @@ nav ul li {
 nav ul li:hover {
   filter: brightness(70%)
 }
-.games {
+.games__list {
   margin: 0 auto;
   margin-top: 30px;
   display: flex;
@@ -45,7 +42,7 @@ nav ul li:hover {
   width: 80%;
   flex-wrap: wrap;
 }
-.games li {
+.games__list li {
   border-radius: 3px;
   overflow: hidden;
   margin: 10px;
@@ -56,11 +53,11 @@ nav ul li:hover {
   box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
   transition: .2s;
 }
-.games li:hover{
+.games__list li:hover{
   background-color: #6441A4 ;
   color: #fff;
 }
-.games li:active{
+.games__list li:active{
   box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
   transform: translate(2px,2px);
 }

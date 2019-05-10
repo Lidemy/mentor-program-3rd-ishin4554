@@ -1,6 +1,3 @@
-*{
-  box-sizing: border-box;
-}
 body, html {
   width: 100%;
   height: 100%;
@@ -57,7 +54,7 @@ img {
   color: #ff7e67;
   background-color: #fafafa;
 }
-.white{
+.bg--white{
   background-color: #fafafa;
 }
 .first{

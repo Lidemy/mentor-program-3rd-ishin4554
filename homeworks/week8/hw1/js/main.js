@@ -1,15 +1,10 @@
 const request = new XMLHttpRequest();
 const url = 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery';
-function showMessage(msg, textCol, bgCol) {
-  console.log(msg);
-  document.querySelector('h1').innerHTML = msg;
-  document.querySelector('h1').style.color = textCol;
-  document.querySelector('body').style.backgroundColor = bgCol;
-}
-function showImg(prize, bdCol) {
-  document.querySelector('.result').removeChild(document.querySelector('.loading'));
+// Show the result picture
+function showImg(prize) {
+  document.querySelector('.result').removeChild(document.querySelector('.result__loading'));
   const item = document.createElement('div');
-  item.classList.add('loading');
+  item.classList.add('result__loading');
   item.innerHTML = `
     <ul><li></li><li></li><li></li></ul>
     <ul><li></li><li></li><li></li></ul>
@@ -17,28 +12,31 @@ function showImg(prize, bdCol) {
   `;
   document.querySelector('.result').append(item);
   document.querySelector('.result').classList.add(prize);
+}
+// Change page into default state
+function resetHTML() {
+  document.querySelector('.result').className = 'result';
+  document.querySelector('.result').removeChild(document.querySelector('.result__loading'));
+  const item = document.createElement('div');
+  item.classList.add('result__loading');
+  item.innerHTML = `
+    <ul><li class="bg--white"></li><li></li><li class="bg--white"></li></ul>
+    <ul><li></li><li class="bg--white"></li><li></li></ul>
+    <ul><li class="bg--white"></li><li></li><li class="bg--white"></li></ul>
+  `;
+  document.querySelector('.result').append(item);
+}
+// Change prize style
+function setStyle(textCol, bgCol, bdCol) {
+  document.querySelector('body').style.backgroundColor = bgCol;
+  document.querySelector('h1').style.color = textCol;
   document.querySelectorAll('li').forEach((node) => {
     const block = node;
     block.style.borderColor = bdCol;
   });
 }
-function resetHTML() {
-  document.querySelector('.result').className = 'result';
-  document.querySelector('.result').removeChild(document.querySelector('.loading'));
-  const item = document.createElement('div');
-  item.classList.add('loading');
-  item.innerHTML = `
-    <ul><li class="white"></li><li></li><li class="white"></li></ul>
-    <ul><li></li><li class="white"></li><li></li></ul>
-    <ul><li class="white"></li><li></li><li class="white"></li></ul>
-  `;
-  document.querySelector('.result').append(item);
-}
-function setStyle(textCol, bgCol) {
-  document.querySelector('body').style.backgroundColor = bgCol;
-  document.querySelector('h1').style.color = textCol;
-}
 function runEffect(prize, msg, textCol, bgCol, bdCol) {
+  // Run flash effect
   let time = 0;
   const timer = setInterval(() => {
     const rowElements = document.querySelectorAll('ul');
@@ -46,25 +44,32 @@ function runEffect(prize, msg, textCol, bgCol, bdCol) {
     rowElements.forEach((row) => {
       row.querySelectorAll('li').forEach((col, idx) => {
         if (idx % 2 === 0) {
-          col.classList.toggle('white');
+          col.classList.toggle('bg--white');
         } else {
-          col.classList.toggle('white');
+          col.classList.toggle('bg--white');
         }
       });
     });
+    // Show the result
     if (time === 20) {
       clearInterval(timer);
-      showImg(prize, bdCol);
+      showImg(prize);
       document.querySelector('.btn').style.display = 'block';
-      showMessage(msg);
-      setStyle(textCol, bgCol);
+      document.querySelector('h1').innerHTML = msg;
+      setStyle(textCol, bgCol, bdCol);
     }
   }, 100);
+}
+function showErrMsg() {
+  alert('系統不穩定，請再試一次');
+  document.querySelector('.btn').style.display = 'block';
+  document.querySelector('h1').innerHTML = '再來一次';
 }
 
 request.onload = () => {
   if (request.status >= 200 && request.status < 400) {
     const result = JSON.parse(request.responseText).prize;
+    // Create obj for prize setting
     let obj = {};
     switch (result) {
       case 'FIRST':
@@ -108,15 +113,11 @@ request.onload = () => {
         runEffect(obj.prize, obj.msg, obj.textCol, obj.bgCol, obj.bdCol);
         break;
       default:
-        alert('系統不穩定，請再試一次');
-        document.querySelector('.btn').style.display = 'block';
-        showMessage('再來一次');
+        showErrMsg();
         break;
     }
   } else {
-    alert('系統不穩定，請再試一次');
-    document.querySelector('.btn').style.display = 'block';
-    showMessage('再來一次');
+    showErrMsg();
   }
 };
 document.querySelector('.btn').onclick = () => {
