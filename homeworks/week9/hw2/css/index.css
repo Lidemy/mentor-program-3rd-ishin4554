@@ -1,0 +1,78 @@
+*{
+  /* border: 1px solid #000; */
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  letter-spacing: 1px;
+}
+.nav {
+  text-align: left;
+  width: 100%;
+  height: 50px;
+  background-color: #eaeaea;
+}
+.nav--item {
+  text-decoration: none;
+  display: inline-block;
+  background-color: #08d9d6;
+  border-radius: 2px;
+  margin-top: 8px;
+  margin-left: 10px;
+  padding: 5px 20px;
+  color: #fff;
+}
+.input__form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input__form > * {
+  margin-right: 20px;
+}
+.input__form .input__submit{
+  background: #08d9d6;
+  border: none;
+  color: #fff;
+}
+.board, .board__comment{
+  display: flex;
+  flex-direction: column;
+}
+.board{
+  width: 40%;
+}
+.board__comment{
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.comment__header{
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.comment__header > *{
+  margin-left: 20px;
+}
+.comment__header .header__nickname{
+  font-weight: 600;
+}
+.comment__header .header__timestamp{
+  font-weight: 300;
+}
+.comment__header .header__avatar{
+  width: 50px;
+  height: 50px;
+}
+.comment__content{
+  padding: 20px;
+}
