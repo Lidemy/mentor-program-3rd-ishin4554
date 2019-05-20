@@ -3,9 +3,13 @@
   $comment = $_POST['comment'];
   $user_id = $_POST['user_id'];
   if(empty($comment)) {
-    die('請檢查資料');
+    echo "<script>
+          alert('請輸入內容');
+          location = 'index.php';
+        </script>";
+  } else {
+    $sql = "INSERT INTO ishin4554_comments (user_id, content) VALUES ('$user_id','$comment')";
+    $result = $conn->query($sql);
+    header('location: index.php');
   }
-  $sql = "INSERT INTO comments (user_id, content) VALUES ('$user_id','$comment')";
-  $result = $conn->query($sql);
-  header('location: index.php');
 ?>

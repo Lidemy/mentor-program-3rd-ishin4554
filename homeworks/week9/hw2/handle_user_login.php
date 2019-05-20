@@ -9,14 +9,14 @@
       location = 'login.php';
     </script>";
   } else {
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM ishin4554_users WHERE username = '$username'";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $value = mt_rand(1000000, 9999999);
     if(!isset($_COOKIE["cookie_id"])){
       if($row['password']===$password){
         setcookie("cookie_id", $value, time()+60);
-        $sql = "UPDATE users SET cookie_id = '$value' WHERE username = '$username'";
+        $sql = "UPDATE ishin4554_users SET cookie_id = '$value' WHERE username = '$username'";
         $conn->query($sql);
         header('location: index.php');
       } else {

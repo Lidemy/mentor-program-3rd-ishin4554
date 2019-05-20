@@ -1,8 +1,15 @@
-<h1>登入頁面</h1>
-<a href="./index.php">回首頁</a>
-<a href="./register.php">還沒有成為會員嗎？點此註冊</a>
-<form method="POST" action="./handle_user_login.php">
-  輸入帳號：<input name="username">
-  輸入密碼：<input name="password">
-  <button type="submit">login</button>
-</form>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="./css/index.css"/>
+  </head>
+  <body>
+    <?php include './template/navbar.php';?>
+    <h1>登入帳號</h1>
+    <form class="login__form" method="POST" action="./handle_user_login.php">
+      <input name="username" placeholder="帳號">
+      <input type="password" name="password" placeholder="密碼">
+      <button type="submit">登入</button>
+    </form>
+  </body>
+</html>
