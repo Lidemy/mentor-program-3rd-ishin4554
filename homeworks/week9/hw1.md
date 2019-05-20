@@ -18,28 +18,23 @@
 | username | VARCHAR（16）| 帳號 |
 | password | VARCHAR（16） | 密碼 | 
 | nickname | VARCHAR（16）| 暱稱 | 
+| cookie_id | VARCHAR（8）| cookie 號碼 | 
 | time | timestamp | 帳號創建時間 current time |
 
-### sessions
-
-| 欄位名稱 | 欄位型態 | 說明 |
-|----------|----------|------|
-| id | VARCHAR (8) | session ID |
-| user_id | integer | 使用者 id   |
 
 ## 功能規劃
 
 - 留言板前台
-  - comments.php
-  - handle_add.php
+  - index.php
+  - handle_add_post.php
 
 - 註冊前台
   - register.php
+  - handle_register.php
   - login.php
-  - logout.php
+  - handle_login.php
+  - handle_logout.php
 
-- 留言板後台
-  - dashboard.php
 
 
 
