@@ -1,3 +1,22 @@
+class Time {
+  constructor(msTime = Number(Date.now())) {
+    this.ttime = msTime;
+    this.transTime = this.time / 1000;
+  }
+
+  get time() {
+    return this.ttime;
+  }
+
+  set time(msTime) {
+    this.ttime = msTime;
+  }
+
+  subTime(time) {
+    return time.transTime - this.transTime;
+  }
+}
+
 // Hadling nodes
 function dq(selector) {
   return document.querySelector(selector);
@@ -5,20 +24,6 @@ function dq(selector) {
 function setStyle(node, css) {
   const n = node;
   n.style[Object.keys(css)] = Object.values(css);
-}
-
-// Handling time
-function getTimeNow() {
-  return Number(Date.now());
-}
-function subTime(priorTime, laterTime) {
-  return laterTime - priorTime;
-}
-function transTime(msTime) {
-  return (msTime / 1000).toFixed(2);
-}
-function createRndTime() {
-  return (Math.random() * 2 + 1) * 1000;
 }
 
 // Showing informations
@@ -60,7 +65,7 @@ const startElement = dq('.btn');
 let isStart = false;
 let clickTime = 0;
 let timer = 0;
-let gameTime = createRndTime();
+const gameTime = new Time((Math.random() * 2 + 1) * 1000);
 const gradeList = [];
 
 // Game logic
@@ -70,29 +75,29 @@ function toggleState() {
 
 function startGame() {
   setStyle(gameElement, { backgroundColor: '#3ec1d3' });
-  clickTime = getTimeNow();
+  clickTime = new Time();
   timer = setTimeout(() => {
     changeBg(gameElement);
-  }, gameTime);
+  }, gameTime.time);
   changeBtn('Restart');
   toggleState(isStart);
 }
 
 function stopGame() {
   if (isStart) {
-    const reflectTime = subTime(clickTime, getTimeNow());
-    if (reflectTime < gameTime) {
+    const reflectSec = clickTime.subTime(new Time());
+    if (reflectSec < gameTime.transTime) {
       showResult('挑戰失敗');
       clearTimeout(timer);
     } else {
-      const grade = transTime(reflectTime - gameTime);
+      const grade = (reflectSec - gameTime.transTime).toFixed(2);
       showResult(`你的成績：${grade} 秒`);
       gradeList.push(grade);
     }
     startElement.classList.toggle('hide');
   }
   toggleState(isStart);
-  gameTime = createRndTime();
+  gameTime.time = (Math.random() * 2 + 1) * 1000;
 }
 
 // Control Events

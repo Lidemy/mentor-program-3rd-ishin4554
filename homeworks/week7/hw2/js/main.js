@@ -1,60 +1,77 @@
 let isChecked = true;
 const warningClass = 'warning--text';
 
+class Element {
+  constructor(node) {
+    this.node = node;
+    this.parent = this.node.parentNode;
+  }
+
+  removeElement(selector) {
+    this.parent.removeChild(this.parent.querySelector(selector));
+  }
+
+  addBg() {
+    this.parent.classList.add('highlight');
+  }
+
+  removeBg() {
+    this.parent.classList.remove('highlight');
+  }
+
+  addText(text) {
+    const item = document.createElement('p');
+    item.innerHTML = text;
+    item.className = warningClass;
+    this.parent.append(item);
+  }
+
+  removeText() {
+    this.removeElement(`.${warningClass}`);
+  }
+
+  checkNodeExist(selector) {
+    return this.parent.querySelector(selector);
+  }
+}
+
+class Input extends Element {
+  constructor(node) {
+    super(node);
+    this.type = node.getAttribute('type');
+  }
+
+  toggleText(condition, text) {
+    if (!condition) {
+      if (super.checkNodeExist(`.${warningClass}`)) {
+        super.removeText();
+      }
+      super.addText(text);
+      super.addBg();
+      isChecked = false;
+    } else if (super.checkNodeExist(`.${warningClass}`)) {
+      super.removeText();
+      super.removeBg();
+    }
+  }
+}
+
 // Hadling nodes
 function dq(selector) {
   return document.querySelector(selector);
 }
-function removeElement(node, selector) {
-  node.parentNode.removeChild(node.parentNode.querySelector(selector));
-}
-
-// UI element
-function addBg(targetNode) {
-  targetNode.parentNode.classList.add('highlight');
-}
-function removeBg(targetNode) {
-  targetNode.parentNode.classList.remove('highlight');
-}
-function addText(targetNode, text) {
-  const item = document.createElement('p');
-  item.innerHTML = text;
-  item.className = warningClass;
-  targetNode.parentNode.append(item);
-}
-function removeText(targetNode) {
-  removeElement(targetNode, `.${warningClass}`);
-}
-
-// Check input
-function checkNodeExist(node, selector) {
-  return node.parentNode.querySelector(selector);
-}
-function toggleText(targetNode, condition, text) {
-  if (!condition) {
-    if (checkNodeExist(targetNode, `.${warningClass}`)) {
-      removeText(targetNode);
-    }
-    addText(targetNode, text);
-    addBg(targetNode);
-    isChecked = false;
-  } else if (checkNodeExist(targetNode, `.${warningClass}`)) {
-    removeText(targetNode);
-    removeBg(targetNode);
-  }
-}
 
 // Check functions
 function checkNode(node) {
-  const inputType = node.getAttribute('type');
-  if (inputType === 'text') {
-    toggleText(node, node.value, '請輸入文字');
+  const input = new Input(node);
+  if (input.type === 'text') {
+    input.toggleText(node.value, '請輸入文字');
   }
-  if (inputType === 'email') {
-    toggleText(node, node.value.match(/\w+@\w+.\w+/), '請輸入正確的 email');
+  if (input.type === 'email') {
+    input.toggleText(node.value.match(/\w+@\w+.\w+/), '請輸入正確的 email');
   }
-  if (inputType === 'radio') {
-    toggleText(node, dq('[name="class"]:checked'), '此為必填問題');
+  if (input.type === 'radio') {
+    input.toggleText(dq('[name="class"]:checked'), '此為必填問題');
   }
 }
 function checkFinal(nodeLs) {

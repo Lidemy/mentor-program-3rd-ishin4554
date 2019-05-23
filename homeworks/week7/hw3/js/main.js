@@ -1,23 +1,60 @@
-const clickLs = [];
-let acc = 0;
 let lastHandler = '';
 let isFirst = true;
+
+class Numbers {
+  constructor(acc = 0, clickLs = []) {
+    this.aacc = acc;
+    this.clickLs = clickLs;
+  }
+
+  get acc() {
+    return this.aacc;
+  }
+
+  set acc(value) {
+    this.aacc = value;
+  }
+
+  getNumberStr() {
+    let numStr = '';
+    let num = this.clickLs.shift();
+    while (typeof num !== 'undefined') {
+      numStr += num;
+      num = this.clickLs.shift();
+    }
+    return numStr;
+  }
+
+  handleCal(handler) {
+    if (isFirst) {
+      this.acc = Number(this.getNumberStr());
+      isFirst = false;
+    } else {
+      if (handler === '+') {
+        this.acc += Number(this.getNumberStr());
+      }
+      if (handler === '-') {
+        this.acc -= Number(this.getNumberStr());
+      }
+      if (handler === '*') {
+        this.acc *= Number(this.getNumberStr());
+      }
+      if (handler === '/') {
+        this.acc /= Number(this.getNumberStr());
+      }
+    }
+  }
+
+  get handler() {
+    return this.clickLs.pop();
+  }
+}
 
 // Utility
 function dq(selector) {
   return document.querySelector(selector);
 }
 
-// Show numbers
-function getNumberStr() {
-  let numStr = '';
-  let num = clickLs.shift();
-  while (typeof num !== 'undefined') {
-    numStr += num;
-    num = clickLs.shift();
-  }
-  return numStr;
-}
 function showNumbers(numbers) {
   if (typeof numbers !== 'number') {
     dq('.calculator__screen').innerHTML = numbers.join('');
@@ -26,31 +63,11 @@ function showNumbers(numbers) {
   }
 }
 
-// Calculate function
-function handleCal(handler) {
-  if (isFirst) {
-    acc = Number(getNumberStr());
-    isFirst = false;
-  } else {
-    if (handler === '+') {
-      acc += Number(getNumberStr());
-    }
-    if (handler === '-') {
-      acc -= Number(getNumberStr());
-    }
-    if (handler === '*') {
-      acc *= Number(getNumberStr());
-    }
-    if (handler === '/') {
-      acc /= Number(getNumberStr());
-    }
-  }
-}
+let clickset = new Numbers();
 
 // reset function
 function resetAll() {
-  clickLs.splice(0, clickLs.length);
-  acc = 0;
+  clickset = new Numbers();
   lastHandler = '';
   isFirst = true;
 }
@@ -59,28 +76,28 @@ function resetAll() {
 dq('.calculator__btns').addEventListener('click', (e) => {
   const curClick = e.target.getAttribute('data-value');
   if (curClick) {
-    clickLs.push(curClick);
+    clickset.clickLs.push(curClick);
     switch (curClick) {
       case '+':
       case '-':
       case '*':
       case '/':
-        lastHandler = clickLs.pop();
-        handleCal(lastHandler);
-        showNumbers(acc);
+        lastHandler = clickset.handler;
+        clickset.handleCal(lastHandler);
+        showNumbers(clickset.acc);
         break;
       case '=':
-        clickLs.pop();
-        handleCal(lastHandler);
-        showNumbers(acc);
+        clickset.clickLs.pop();
+        clickset.handleCal(lastHandler);
+        showNumbers(clickset.acc);
         resetAll();
         break;
       case 'AC':
         resetAll();
-        showNumbers(clickLs);
+        showNumbers(clickset.clickLs);
         break;
       default:
-        showNumbers(clickLs);
+        showNumbers(clickset.clickLs);
         break;
     }
   }

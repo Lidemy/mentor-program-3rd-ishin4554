@@ -43,13 +43,43 @@
 1. 判斷
 當時 bubbling 失敗的原因忘記了，但這次利用 bubbling 對 e.target 來判斷得到的 input type 進行 toggle text 發現是可行的，所以把原本要針對三種 input type 做 addEventListener 簡化成，一個 eventListener 再進行 input type 判斷。
 
-2. 提示顯示: toggleText(), toggleEmail(), toggleRadio()
+2. 提示顯示: `toggleText()`, `toggleEmail()`, `toggleRadio()`
 接著針對不同的判斷進行 toggle 內容，toggle 的過程也會判對 input 是不是需要 toggle，赫然發現原來 condition 也可以當成參數傳遞啊（？）大夢初醒般，把三坨判斷再簡化，將文字類的統一，radio 由於涉及 html 結構上的不同。最後又在回頭審視了 html 是不是真的要保持原本的結構，發現不必然，就把所以的問題結構統一，一個 toggle function 解決三個狀況。
 
 3. final check
-由於判斷的方式變成用一個 addEventListener 所以沒辦法使用原本的 dispatch，因為不再是呼喚所有的 listener，所以這邊改成 selectorAll(input) 將 node array forEach 給 checkNode 在進行一次判斷。而同時也修正了上次 object 用單獨賦值的方式，而是利用 object 另外一個語法 obj['key'] 的方式，把所有項目變成一個陣列來處理物件。
+由於判斷的方式變成用一個 `addEventListener()` 所以沒辦法使用原本的 `dispatch()`，因為不再是呼喚所有的 listener，所以這邊改成 `selectorAll(input)` 將 node array forEach 給 checkNode 在進行一次判斷。而同時也修正了上次 object 用單獨賦值的方式，而是利用 object 另外一個語法 `obj['key']` 的方式，把所有項目變成一個陣列來處理物件。
 
 # 第三版 OOP 重構
-注意：本版以物件導向為目標進行重構
+這次練習了 OOP 繼承的概念，讓各種 node 的文字背景處理屬於一類， node 之下 input 還可以判斷跟有 type 屬性。
+
+- 最有感的是 parameter 的大幅減少，在這個練習裡面所有要匯入 node 的參數都可以消失。
+- 釐清什麼時候 `super` 什麼時候 `this`，基本上 extends 出來的 class 需要 `super()` parent class 的 variables 然後，就可以用 `this.var`，method 也需要 `super.method` 來使用。如果是同一個 class ，就是用 this 來使用同 class method。
+- 在使用物件時要注意有沒有多餘的參數，很多 bug 出在這裡。
 
 # Code Review 
+
+[善用 style](https://github.com/Lidemy/mentor-program-3rd-sevensplus/blob/master/homeworks/week7/hw2/script.js) 其實滿節省程式碼的，原本六行不只可以縮在兩行，但不知道實作的時候一般工程師會不會很介意在 dev 裡面其實還看得到這件事？
+```javascript
+// by sevenplus
+document.querySelector('.form__col1').style.background = (isEmail__False) ? 'pink' : 'initial';
+document.querySelector('.email__error').style.visibility = (isEmail__False) ? 'visible' : 'hidden';
+```
+
+[onClick 搭配 state code](https://github.com/Lidemy/mentor-program-3rd-cocoisbad/blob/master/homeworks/week7/hw2/index.html) 就可以做到 e.preventListener 了
+
+```html
+<!-- by cocoisbad -->
+<div class='content__output--btn'><input type="button" value="提交" name='submit' onclick='processFormData();'></div>
+```
+
+```javascript
+// by cocoisbad
+if (sendOk === 1) {
+  console.log(email)
+  console.log(name)
+  console.log(apply)
+  console.log(havebg)
+  console.log(other)
+  alert('表單已成功送出!')
+}
+```
