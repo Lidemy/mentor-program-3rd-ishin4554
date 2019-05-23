@@ -1,4 +1,7 @@
-# 需求邏輯
+
+
+# 作業邏輯
+
 ## 核心邏輯
 要設計一個可以從按下按鈕開始，隨機的一段秒數長度，然後再點擊時會判斷比隨機一段的秒數長度提早或超時多少，如果提早則失敗、超時則紀錄下相差多少時間的遊戲。
 
@@ -34,7 +37,7 @@
 
 原本，最理想的狀態是使用 `setTimeOut()` 比較直覺，因為是一次延後，但當時因為找不到 `setTimeOut()` 失敗無法取消的原因，最後選擇用 `setInterval()` 來實踐。
 
-取消 `setInterval()` 需要宣告一個變數來儲存他的 id（根據[此篇回答](https://www.sitepoint.com/community/t/id-returned-by-setinterval/21831)基本上這個 id 就是記憶體位置了），你才有辦法在之後被 `clearInterval()`。
+取消 `setInterval()` 需要宣告一個變數來儲存他的 id（根據 [此篇回答](https://www.sitepoint.com/community/t/id-returned-by-setinterval/21831) 基本上這個 id 就是記憶體位置了），你才有辦法在之後被 `clearInterval()`。
 
 以上變色系統大致完成，剩下是比較細節的 UI 邏輯，以及額外進階挑戰題的功能，歷史紀錄、變色與按鍵啟動：
 
@@ -44,32 +47,33 @@
 # 第二版重構
 注意：本版以 clean code 為目標進行重構
 
-對於 function 怎麼 extract 其實還很模糊，第一版的時候覺得功能其實已經能切則切，看到後來幾週老師給予的建議，像是 selector 這些可以打包，當時的一個靈感方向就是：**jQuery 幫我們做的，就是應該被打包的 function**
+對於 function 怎麼 extract 其實還很模糊，第一版的時候覺得功能其實已經能切則切，看到後來幾週老師給予的建議，像是 selector 這些可以打包，當時的一個靈感方向就是：**jQuery 幫我們做的，就是應該被打包的 function** [^1]
 
-所以這一版改版就以把印象中 jQuery 幫我們做的事情，給打包起來（註：有人可能會問，既然已經用過 jQuery 為什麼不直接使用？是因為想要跟著課程進度來加強基礎）並優化命名。
+所以這一版改版就以把印象中 jQuery 幫我們做的事情，給打包起來並優化命名。
 
 首先回顧一下 code，最常出現的幾個：
-1. `document.querySelector()`
-2. `style.property = ...`
+1. `document.querySelector()` : `dq()` 
+2. `style.property = ...` 用 `setStyle()` 打包 : 嘗試了讓參數也可以是物件的方式來操作 css，用了 `object.keys()` 跟 `object.valules()` 來進行操作。
 
 Event Listener 沒有處理是基於 callback function 常常寫在裡面以 anonymous function 來處裡，要另外傳入 function 不是很方便。
 
-另外一方面，遊戲架構上似乎也可以做一些 extract，第一版的開發是跟著操作順序來開發，不符原先想像的架構來寫功能，所以比較理想的做法會是：
-1. 計數器系列：getTimeNow(), subTime(), transTime()
-2. 時間產生器：createRndTime()
-3. 遊戲邏輯：startGame(), stopGame()
-4. 排名：showGradeLs(), showGrade(), showResult(), cleanGradeLs(node)
-5. UI 調整: changeBg(), changeBtn()
+另外一方面，遊戲架構上似乎也可以做一些 extract，第一版的開發是跟著操作順序來開發，不符原先想像的架構來寫功能，所以第二版應該要跟著原本的規劃[^2]：
+|Category|Functions|
+|:---|:---|
+|計數器系列|getTimeNow(), subTime(), transTime()|
+|時間產生器|createRndTime()|
+|遊戲邏輯|startGame(), stopGame()|
+|排名|cleanGradeLs(),showGradeLs(), showGrade(), showResult()|
+|UI 調整|changeBg(), changeBtn()|
 
-用這種方式來重構程式碼，重構的過程中嘗試了讓參數也可以是物件的方式來操作 css，用了 `object.keys()` 跟 `object.valules()` 來進行操作。
 
 # 第三版 OOP 重構
 注意：本版以物件導向為目標進行重構
 
-這次要用 OO 的概念進行重構，上一次程式碼已經可以看到一些收納整理的結果，這次就來嘗試以下面三個系列來進行整理：
-1. node 系列
-2. 時間系列
-3. 排名結果系列
 
 
 # Code Review 
+
+
+[^1]: *之所以沒有使用 jQuery 是希望重構過程與課程規劃配合*
+[^2]: *關於重構過程的拆分是因為練習的考量，以第一次重構來說已經接觸了 OOP 的概念*
