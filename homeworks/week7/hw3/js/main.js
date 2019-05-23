@@ -1,107 +1,86 @@
-const btnsElement = document.querySelector('.calculator__btns');
-const numbers = [];
-let calNum = 0;
-const cal = [];
+const clickLs = [];
+let acc = 0;
+let lastHandler = '';
+let isFirst = true;
 
-function showNumbers(arr) {
-  const numStr = arr.join('');
-  document.querySelector('.calculator__screen').innerHTML = numStr;
+// Utility
+function dq(selector) {
+  return document.querySelector(selector);
 }
-function resetAll() {
-  numbers.splice(0, numbers.length);
-  cal.splice(0, cal.length);
-  calNum = 0;
-}
-function floatJoin(numArr) {
-  const dex = numArr.indexOf('.');
-  if (dex !== -1) {
-    numArr.splice(dex, 1);
-    console.log(numArr.length - dex);
-    return parseInt(numArr.join(''), 10) / (10 ** (numArr.length - dex));
+
+// Show numbers
+function getNumberStr() {
+  let numStr = '';
+  let num = clickLs.shift();
+  while (typeof num !== 'undefined') {
+    numStr += num;
+    num = clickLs.shift();
   }
-  return parseInt(numArr.join(''), 10);
+  return numStr;
+}
+function showNumbers(numbers) {
+  if (typeof numbers !== 'number') {
+    dq('.calculator__screen').innerHTML = numbers.join('');
+  } else {
+    dq('.calculator__screen').innerHTML = numbers.toString();
+  }
 }
 
-btnsElement.addEventListener('click', (e) => {
+// Calculate function
+function handleCal(handler) {
+  if (isFirst) {
+    acc = Number(getNumberStr());
+    isFirst = false;
+  } else {
+    if (handler === '+') {
+      acc += Number(getNumberStr());
+    }
+    if (handler === '-') {
+      acc -= Number(getNumberStr());
+    }
+    if (handler === '*') {
+      acc *= Number(getNumberStr());
+    }
+    if (handler === '/') {
+      acc /= Number(getNumberStr());
+    }
+  }
+}
+
+// reset function
+function resetAll() {
+  clickLs.splice(0, clickLs.length);
+  acc = 0;
+  lastHandler = '';
+  isFirst = true;
+}
+
+// btn click
+dq('.calculator__btns').addEventListener('click', (e) => {
   const curClick = e.target.getAttribute('data-value');
   if (curClick) {
-    const curVal = e.target.getAttribute('data-value');
-    console.log(curVal);
-    switch (curVal) {
-      case '+': {
-        cal.push(curVal);
-        calNum += floatJoin(numbers);
-        numbers.splice(0, numbers.length);
-        showNumbers(calNum.toString().split(''));
-        break;
-      }
+    clickLs.push(curClick);
+    switch (curClick) {
+      case '+':
       case '-':
-        cal.push(curVal);
-        if (cal.length <= 1) {
-          calNum = floatJoin(numbers);
-        } else {
-          calNum -= floatJoin(numbers);
-        }
-        numbers.splice(0, numbers.length);
-        showNumbers(calNum.toString().split(''));
-        break;
-      case '/':
-        cal.push(curVal);
-        if (cal.length <= 1) {
-          calNum = floatJoin(numbers);
-        } else {
-          calNum /= floatJoin(numbers);
-        }
-        numbers.splice(0, numbers.length);
-        showNumbers(calNum.toString().split(''));
-        break;
       case '*':
-        cal.push(curVal);
-        if (cal.length <= 1) {
-          calNum = floatJoin(numbers);
-        } else {
-          calNum *= floatJoin(numbers);
-        }
-        numbers.splice(0, numbers.length);
-        showNumbers(calNum.toString().split(''));
+      case '/':
+        lastHandler = clickLs.pop();
+        handleCal(lastHandler);
+        showNumbers(acc);
         break;
       case '=':
-        if (cal[cal.length - 1] === '+') {
-          calNum += floatJoin(numbers);
-          numbers.splice(0, numbers.length);
-          showNumbers(calNum.toString().split(''));
-          resetAll();
-          break;
-        }
-        if (cal[cal.length - 1] === '-') {
-          calNum -= floatJoin(numbers);
-          numbers.splice(0, numbers.length);
-          showNumbers(calNum.toString().split(''));
-          resetAll();
-          break;
-        }
-        if (cal[cal.length - 1] === '/') {
-          calNum /= floatJoin(numbers);
-          numbers.splice(0, numbers.length);
-          showNumbers(calNum.toString().split(''));
-          resetAll();
-          break;
-        }
-        if (cal[cal.length - 1] === '*') {
-          calNum *= floatJoin(numbers);
-          numbers.splice(0, numbers.length);
-          showNumbers(calNum.toString().split(''));
-          resetAll();
-          break;
-        }
+        clickLs.pop();
+        handleCal(lastHandler);
+        showNumbers(acc);
+        resetAll();
         break;
       case 'AC':
         resetAll();
-        showNumbers(['']);
+        showNumbers(clickLs);
         break;
       default:
-        numbers.push(curVal);
-        showNumbers(numbers);
+        showNumbers(clickLs);
         break;
     }
   }
