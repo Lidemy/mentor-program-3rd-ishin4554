@@ -1,71 +1,123 @@
-const gameElement = document.querySelector('body');
-const startElement = document.querySelector('.btn');
-let time = Math.random() * 2 + 1;
-let clickTime = 0;
-let state = false;
-let timer = 0;
-const gradeList = [];
-
-function startGame(e) {
-  gameElement.style.backgroundColor = '#3ec1d3';
-  clickTime = Date.now();
-  timer = setTimeout(() => {
-    const rndOrange = 50 + Math.floor(Math.random() * 50);
-    gameElement.style.backgroundColor = `hsl(35,100%,${rndOrange}%)`;
-  }, time * 1000);
-  e.stopPropagation();
-  startElement.classList.toggle('hide');
-  startElement.innerHTML = 'Restart';
-  state = true;
-}
-
-function clickGame() {
-  if (state) {
-    const reflect = (Date.now() - clickTime) / 1000;
-    if (reflect < time) {
-      alert('挑戰失敗');
-      clearTimeout(timer);
-    } else {
-      const grade = (reflect - time).toFixed(2);
-      alert(`你的成績：${grade} 秒`);
-      gradeList.push(grade);
-    }
-    startElement.classList.toggle('hide');
+class Time {
+  constructor(msTime = Number(Date.now())) {
+    this.ttime = msTime;
+    this.transTime = this.time / 1000;
   }
-  state = false;
-  time = Math.random() * 2 + 1;
+
+  get time() {
+    return this.ttime;
+  }
+
+  set time(msTime) {
+    this.ttime = msTime;
+  }
+
+  subTime(time) {
+    return time.transTime - this.transTime;
+  }
 }
 
-function showGrade(ls) {
-  ls.sort((a, b) => a - b);
-  const board = document.querySelector('.board');
+// Hadling nodes
+function dq(selector) {
+  return document.querySelector(selector);
+}
+function setStyle(node, css) {
+  const n = node;
+  n.style[Object.keys(css)] = Object.values(css);
+}
+
+// Showing informations
+function showResult(text) {
+  alert(text);
+}
+function cleanGradeLs(node) {
+  node.removeChild(dq('ol'));
+}
+function showGrade(node, time) {
+  const item = document.createElement('li');
+  if (time) {
+    item.innerText = `${time} 秒`;
+    node.appendChild(item);
+  }
+}
+function showGradeLs(gradeLs) {
+  const board = dq('.board');
+  cleanGradeLs(board);
   const list = document.createElement('ol');
-  board.removeChild(document.querySelector('ol'));
+  gradeLs.sort((a, b) => a - b);
   for (let i = 0; i < 3; i += 1) {
-    const item = document.createElement('li');
-    if (ls[i]) {
-      item.innerText = `${ls[i]} 秒`;
-      list.appendChild(item);
-    }
+    showGrade(list, gradeLs[i]);
   }
   board.appendChild(list);
 }
 
+// setting UI
+function changeBg(node) {
+  setStyle(node, { backgroundColor: `hsl(35,100%,${50 + Math.floor(Math.random() * 50)}%)` });
+}
+function changeBtn(text) {
+  dq('.btn').classList.toggle('hide');
+  dq('.btn').innerHTML = text;
+}
+
+const gameElement = dq('body');
+const startElement = dq('.btn');
+let isStart = false;
+let clickTime = 0;
+let timer = 0;
+const gameTime = new Time((Math.random() * 2 + 1) * 1000);
+const gradeList = [];
+
+// Game logic
+function toggleState() {
+  isStart = !isStart;
+}
+
+function startGame() {
+  setStyle(gameElement, { backgroundColor: '#3ec1d3' });
+  clickTime = new Time();
+  timer = setTimeout(() => {
+    changeBg(gameElement);
+  }, gameTime.time);
+  changeBtn('Restart');
+  toggleState(isStart);
+}
+
+function stopGame() {
+  if (isStart) {
+    const reflectSec = clickTime.subTime(new Time());
+    if (reflectSec < gameTime.transTime) {
+      showResult('挑戰失敗');
+      clearTimeout(timer);
+    } else {
+      const grade = (reflectSec - gameTime.transTime).toFixed(2);
+      showResult(`你的成績：${grade} 秒`);
+      gradeList.push(grade);
+    }
+    startElement.classList.toggle('hide');
+  }
+  toggleState(isStart);
+  gameTime.time = (Math.random() * 2 + 1) * 1000;
+}
+
+// Control Events
 startElement.addEventListener('click', (e) => {
-  startGame(e);
+  startGame();
+  e.stopPropagation();
+});
+
+gameElement.addEventListener('click', () => {
+  stopGame();
+  showGradeLs(gradeList);
 });
 
 window.addEventListener('keypress', (e) => {
   if (e.key === 'r') {
-    startGame(e);
+    startGame();
+    e.stopPropagation();
   }
   if (e.key === ' ') {
-    clickGame();
-    showGrade(gradeList);
+    stopGame();
+    showGradeLs(gradeList);
   }
-});
-
-gameElement.addEventListener('click', () => {
-  clickGame();
-  showGrade(gradeList);
 });

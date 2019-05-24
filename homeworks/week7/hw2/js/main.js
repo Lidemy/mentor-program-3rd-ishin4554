@@ -1,92 +1,107 @@
-const textElements = document.querySelectorAll('.must input[type="text"]');
-const emailElement = document.querySelector('.must input[type="email"]');
-const radioElement = document.querySelectorAll('.must [name="class"]');
-let state = false;
+let isChecked = true;
+const warningClass = 'warning--text';
 
-function showText(node, text) {
-  const item = document.createElement('p');
-  item.innerHTML = text;
-  item.classList.add('text-highlight');
-  node.parentNode.append(item);
-}
-function removeText(node) {
-  node.parentNode.classList.remove('highlight');
-  const temp = node.parentNode.querySelector('p');
-  node.parentNode.removeChild(temp);
-}
-
-function checkFinal() {
-  const event = new Event('focusout');
-  textElements.forEach((element) => {
-    element.dispatchEvent(event);
-  });
-  radioElement.forEach((element) => {
-    element.dispatchEvent(event);
-  });
-  emailElement.dispatchEvent(event);
-}
-
-textElements.forEach((element) => {
-  element.addEventListener('focusout', () => {
-    if (!element.value) {
-      element.parentNode.classList.add('highlight');
-      if (!element.parentNode.querySelector('p')) {
-        showText(element, '這是必填問題');
-      }
-      state = false;
-    } else if (element.parentNode.querySelector('p')) {
-      removeText(element);
-      state = true;
-    }
-  });
-});
-
-emailElement.addEventListener('focusout', () => {
-  if (!emailElement.value.match(/\w+@\w+.\w+/)) {
-    emailElement.parentNode.classList.add('highlight');
-    if (!emailElement.parentNode.querySelector('p')) {
-      showText(emailElement, '請輸入正確的 email');
-    }
-    state = false;
-  } else if (emailElement.parentNode.querySelector('p')) {
-    removeText(emailElement);
-    state = true;
+class Element {
+  constructor(node) {
+    this.node = node;
+    this.parent = this.node.parentNode;
   }
-});
 
-radioElement.forEach((element) => {
-  element.addEventListener('focusout', () => {
-    if (!element.checked) {
-      element.parentNode.parentNode.classList.add('highlight');
-      if (!element.parentNode.querySelector('p')) {
-        showText(element, '這是必填問題');
+  removeElement(selector) {
+    this.parent.removeChild(this.parent.querySelector(selector));
+  }
+
+  addBg() {
+    this.parent.classList.add('highlight');
+  }
+
+  removeBg() {
+    this.parent.classList.remove('highlight');
+  }
+
+  addText(text) {
+    const item = document.createElement('p');
+    item.innerHTML = text;
+    item.className = warningClass;
+    this.parent.append(item);
+  }
+
+  removeText() {
+    this.removeElement(`.${warningClass}`);
+  }
+
+  checkNodeExist(selector) {
+    return this.parent.querySelector(selector);
+  }
+}
+
+class Input extends Element {
+  constructor(node) {
+    super(node);
+    this.type = node.getAttribute('type');
+  }
+
+  toggleText(condition, text) {
+    if (!condition) {
+      if (super.checkNodeExist(`.${warningClass}`)) {
+        super.removeText();
       }
-      state = false;
-    } else if (element.parentNode.querySelector('p')) {
-      element.parentNode.parentNode.classList.remove('highlight');
-      const temp = element.parentNode.querySelector('p');
-      element.parentNode.removeChild(temp);
-      state = true;
+      super.addText(text);
+      super.addBg();
+      isChecked = false;
+    } else if (super.checkNodeExist(`.${warningClass}`)) {
+      super.removeText();
+      super.removeBg();
     }
-  });
-});
+  }
+}
 
-document.querySelector('button').addEventListener('click', (e) => {
+// Hadling nodes
+function dq(selector) {
+  return document.querySelector(selector);
+}
+
+// Check functions
+function checkNode(node) {
+  const input = new Input(node);
+  if (input.type === 'text') {
+    input.toggleText(node.value, '請輸入文字');
+  }
+  if (input.type === 'email') {
+    input.toggleText(node.value.match(/\w+@\w+.\w+/), '請輸入正確的 email');
+  }
+  if (input.type === 'radio') {
+    input.toggleText(dq('[name="class"]:checked'), '此為必填問題');
+  }
+}
+function checkFinal(nodeLs) {
+  nodeLs.forEach((node) => {
+    checkNode(node);
+  });
+}
+function getValue(name) {
+  return dq(`[name='${name}']`).value;
+}
+function createObj() {
+  const col = ['email', 'name', 'job', 'how', 'class', 'background', 'other'];
+  const obj = {};
+  col.forEach((key) => {
+    obj[key] = getValue(key);
+  });
+  return obj;
+}
+
+// Listeners
+dq('form').addEventListener('focusout', (e) => {
+  const node = e.target;
+  checkNode(node);
+});
+dq('button').addEventListener('click', (e) => {
+  isChecked = true;
   e.preventDefault();
-  checkFinal();
-  if (state === false) {
-    alert('提交失敗');
-  } else {
-    const obj = {
-      email: document.querySelector('[name="email"]').value,
-      name: document.querySelector('[name="email"]').value,
-      job: document.querySelector('[name="job"]').value,
-      how: document.querySelector('[name="how"]').value,
-      class: document.querySelector('[name="class"]:checked').value,
-      background: document.querySelector('[name="background"]').value,
-      other: document.querySelector('[name="other"]').value,
-    };
-    alert('提交成功');
-    console.log(obj);
+  checkFinal(document.querySelectorAll('input'));
+  if (isChecked) {
+    console.log(createObj());
+    alert('完成填寫');
   }
 });
