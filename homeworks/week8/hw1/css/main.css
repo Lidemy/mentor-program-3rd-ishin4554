@@ -19,6 +19,7 @@ span {
   font-size: 20px;
 }
 .result{
+  display: none;
   width: 300px;
   height: 300px;
 }
@@ -44,6 +45,7 @@ img {
   margin: 0 auto;
 }
 .btn {
+  align-items: center;
   padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid #fafafa;
@@ -62,20 +64,30 @@ img {
   background-size: cover;
   background-position: center center;
   opacity: .8;
+    display: block;
+
 }
 .second{
   background: url('https://www.twucm.com/uploads/products/5b10f35997cea.jpg');
   background-size: cover;
   background-position: center center;
   opacity: .8;
+  display: block;
+
 }
 .third{
   background: url('http://i2.haber7.net//haber/haber7/photos/2018/10/youtube_video_indirme_ozelligi_artik_turkiyede_1520240776_7452.png');
   background-size: cover;
   background-position: center center;
   opacity: .8;
+  display: block;
+
 }
 .none{
   background-color: #07689f;
+  display: none;
+}
+
+.hidden{
   display: none;
 }
