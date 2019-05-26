@@ -31,20 +31,36 @@
 4. 等到核心的功能都沒問題時，近一步對新程式碼審視再進一步優化。
 5. 重複以上過程直到沒有 bug 所有功能都完成。
 
+那最後決定先把按順序來，把基本的重構做完再做新功能。
+
+這次也是有大量 request 所以借用上一個作業的 class 來設計，打包一些變數變成物件，這一塊滿順利的，接下來就開始新增無限滾動與搜尋補完的功能。
+
+## 無限滾動
+無限滾動原本猜測應該是偵測螢幕邊緣的原理，只是怎麼抓「邊緣」這個概念，理應是最尾巴的物件出現在視窗內。
+所以就查了一下 `infinite scrool height` 等關鍵字，可能是常常要被實作的功能吧，有滿多教學的就挑了一個實作，這邊 selector 用 `:last-child` 可以很方便地取得最後一個遊戲，
+
+但是更新的時候要怎麼讓更新知道現在在哪個遊戲？這邊用 html attribute 幫頁面加一個遊戲的隱藏屬性，要更新的時候就去抓這個 attribute 就知道現在屬於哪個遊戲。
+
+#搜尋補完
+搜尋的部分利用 Twitch 提供的 Search API 可以得到搜尋列表，設定一些搜尋與體驗上的條件（大於三個字才補完、字體顏色的變化）一但輸入的字數大於三且不是刪除的時候就抓取 `input value` call API 取得搜尋條件的第一個結果填入 `input value`，之後按搜尋就抓取 input value 做字串處理後送進畫面更新的 method 就完成了。
 
 # Code Review
-如果不 parse header 判斷頁數範圍的作法，可以直接抓所有資料下來除每頁顯示數。
+不同的 infinite scroll 作法，是用物件總高度來計算。
 ```javascript
 //by julypenguin
-if (pageRequest.status >= 200 && pageRequest.status < 400) {
-    const pageResponse = pageRequest.responseText;
-    const pageJson = JSON.parse(pageResponse);
-    pageTotal = Math.ceil(pageJson.length / limit);
-    if (pageTotal >= 7) {
-      pageTotal = 6;
-    }
-    for (let i = 0; i < pageTotal; i += 1) {
-      pageDomRander(i);
-    }
+window.addEventListener('mousewheel', (e) => {
+  if (e.deltaY === 125 && wheel) {
+    window.addEventListener('scroll', () => {
+      const { scrollTop } = document.documentElement;
+      const { clientHeight } = document.documentElement;
+      const { scrollHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight) {
+        offset = limit * page;
+        page += 1;
+        requestFn();
+        wheel = false;
+      }
+    });
   }
+});
 ```
