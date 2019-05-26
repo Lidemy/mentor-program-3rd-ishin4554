@@ -1,7 +1,33 @@
-const request = new XMLHttpRequest();
+class GameRequest extends XMLHttpRequest {
+  constructor() {
+    super();
+    this.authorization = 'rck45srex8b3czarkdyskohf45o1fl';
+  }
+
+  getStreams(offset = 0, game = 'League%20of%20Legends', limit = 20) {
+    super.open('GET', `${this.url}/streams/?offset=${offset}&game=${game}&limit=${limit}`, true);
+    super.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+    super.setRequestHeader('Client-ID', this.authorization);
+    super.send();
+  }
+
+  getGames(limit = 5) {
+    super.open('GET', `${this.url}/games/top?limit=${limit}`, true);
+    super.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+    super.setRequestHeader('Client-ID', this.authorization);
+    super.send();
+  }
+}
+
+function dq(selector) {
+  return document.querySelector(selector);
+}
+
+const streamReq = new GameRequest();
+const gameReq = new GameRequest();
 let offset = 0;
-// Show the stream item on the site
-function createListItem(cover, avatar, title, name, url) {
+// Show stram item on the site
+function showGameItem(cover, avatar, title, name, url) {
   const item = document.createElement('li');
   item.innerHTML = `
     <div class="top">
@@ -15,30 +41,50 @@ function createListItem(cover, avatar, title, name, url) {
       </div>
     </div>
   `;
-  document.querySelector('ul').append(item);
+  document.querySelector('.games__list').append(item);
 }
-// Get the streams request
-request.onload = () => {
-  if (request.status >= 200 && request.status < 400) {
-    const result = JSON.parse(request.responseText);
+
+streamReq.getStreams();
+gameReq.getGames();
+
+// Get the top five games
+gameReq.onload = () => {
+  if (gameReq.status >= 200 && gameReq.status < 400) {
+    const result = JSON.parse(gameReq.responseText);
+    result.top.forEach((game) => {
+      const item = document.createElement('li');
+      item.innerHTML = game.game.name;
+      document.querySelector('nav ul').append(item);
+    });
+  } else {
+    console.log('err');
+  }
+};
+// Get the top streams
+streamReq.onload = () => {
+  if (streamReq.status >= 200 && streamReq.status < 400) {
+    const result = JSON.parse(streamReq.responseText);
     result.streams.forEach((stream) => {
-      createListItem(stream.preview.medium, stream.channel.logo,
+      showGameItem(stream.preview.medium, stream.channel.logo,
         stream.channel.status, stream.channel.display_name, stream.channel.url);
     });
   } else {
     console.log('err');
   }
 };
-const url = 'https://api.twitch.tv/kraken/streams/';
-request.open('GET', `${url}?game=League%20of%20Legends&limit=20`, true);
-request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
-request.setRequestHeader('Client-ID', 'rck45srex8b3czarkdyskohf45o1fl');
-request.send();
-// Show more result button
+
+// Load more streams
 document.querySelector('.btn').onclick = () => {
   offset += 20;
-  request.open('GET', `${url}?game=League%20of%20Legends&limit=20&offset=${offset}`, true);
-  request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
-  request.setRequestHeader('Client-ID', 'rck45srex8b3czarkdyskohf45o1fl');
-  request.send();
+  streamReq.getStreams(offset);
 };
+document.querySelector('nav ul').addEventListener('click', (e) => {
+  if (e.target.innerText) {
+    dq('.games').innerHTML = '';
+    const ls = document.createElement('ul');
+    dq('.games').append(ls);
+    ls.className = 'games__list';
+    offset = 0;
+    streamReq.getStreams(offset, e.target.innerText.replace(' ', '%20'));
+  }
+});
