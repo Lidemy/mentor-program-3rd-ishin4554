@@ -1,4 +1,5 @@
 html, body {
+  margin: 0;
   width: 100%;
   height: 100%;
 }
@@ -10,14 +11,18 @@ body {
 }
 /* page nav */
 .page ul{
+  position: fixed;
+  top: 0;
+  right: 10px;
   list-style: none;
   display: flex;
 }
 .page ul li {
   background: #fff;
+  padding: 10px 20px;
+  height: 20px;
   margin: 10px;
   cursor: pointer;
-  padding: 10px;
 }
 .page ul li:hover {
   background-color: #05a19c;
@@ -25,40 +30,47 @@ body {
 }
 /* comments */
 .comments {
-  width: 30%;
-  height: 70%;
+  width: 100%;
 }
 .comments__list {
-  height: 100%;
-  overflow-y: scroll;
+  margin-bottom: 300px;
 }
 .comments__list ul {
-  margin-right: 20px;
+  width: 50%;
+  margin-left: 100px;
   list-style: none;
   padding: 0;
 }
 .comments__list ul li {
-  padding: 10px;
-  background: #fff;
+  background-color: rgba(255,255,255,.5);
+  padding: 20px;
   margin: 10px 0;
 }
+.comments__board {
+  position: fixed;
+  height: 10%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+}
 .comments__board input{
-  width: 300px;
+  font-size: 20px;
+  width: 80%;
   border-radius: 5px;
   border: none;
-  margin-top: 20px;
   padding: 15px;
 }
 .comments__board input:focus{
   outline: none; 
 }
 .comments__board .btn {
-  box-sizing: border-box;
-  display: inline-block;
   border: 1px solid #05a19c;
   color: #05a19c;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 20px 40px;
+  border-radius: 2px;
   margin-left: 20px;
 }
 .comments__board .btn:hover {
