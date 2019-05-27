@@ -1,5 +1,9 @@
-*{
-  /* border: 1px solid #000; */
+*::Before {
+  font-weight: 800;
+}
+
+*::After {
+  font-size: 14px;
 }
 
 html, body{
@@ -12,7 +16,30 @@ html, body{
   margin: 0;
 }
 
-.dashboard__result {
+input {
+  border: none;
+  border-bottom: 2px solid #000;
+  margin-left: 20px;
+}
+
+select {
+  margin-left: 30px;
+  border: none;
+  background: #000;
+  color: #fff;
+}
+
+select:focus{
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid rgba(0,0,0,0.4);
+}
+
+ul {
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +47,7 @@ html, body{
 }
 
 .dashboard__result li {
+  cursor: default;
   display: flex;
   flex-direction: column;
   border: 1px solid #000;
@@ -27,11 +55,39 @@ html, body{
   padding: 20px;
 }
 
+.btn {
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 20px;
+  cursor: default;
+  border: 1px solid #000;
+  width: 80px;
+  margin-top: 20px;
+  padding: 5px 20px;
+}
+
+.btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+li:hover {
+  background: #000;
+  color: #fff;
+}
+
+button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 .result__total >div::after{ content: ' hrs' }
 .dashboard__result >li:nth-child(1)::before{content: 'TOTAL'}
-.dashboard__result >li:nth-child(2)::before{content: 'CAT TOTAL'}
-.dashboard__result >li:nth-child(3)::before{content: 'TIME TOTAL'}
-.dashboard__result >li:nth-child(4)::before{content: 'TIME CAT TOTAL'}
-.result__total >div:nth-child(1)::before{ content: 'TOTAL: ' }
-.result__total >div:nth-child(2)::before{ content: 'DAY: ' }
-.result__total >div:nth-child(3)::before{ content: 'WEEK: ' }
+.dashboard__result >li:nth-child(2)::before{content: 'CATEGORY'}
+.dashboard__result >li:nth-child(3)::before{content: 'RANGE TOTAL'}
+.dashboard__result >li:nth-child(4)::before{content: 'RANGE CATEGORY'}
+.result__total >h1:nth-child(1)::after{ content: '  DAYS' }
+.result__total >div:nth-child(2)::before{ content: 'TOTAL: ' }
+.result__total >div:nth-child(3)::before{ content: 'DAY: ' }
+.result__total >div:nth-child(4)::before{ content: 'WEEK: ' }

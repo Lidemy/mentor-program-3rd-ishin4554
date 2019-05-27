@@ -9,15 +9,16 @@
   <body>
       <button id="authorize_button" style="display: none;">Authorize</button>
       <button id="signout_button" style="display: none;">Sign Out</button>
-    <select name="category">
-      <option value="MTR">MTR</option>
-      <option value="ISS">ISS</option>
-    </select>
-    <input type="text" name="date_min" placeholder="YYYYMMDD" />
-    <input type="text" name="date_max" placeholder="YYYYMMDD" />
-    <div class="btn date">送出</div>
+    <div class="time">
+      <select name="category">
+        <option value="MTR">MTR</option>
+        <option value="ISS">ISS</option>
+      </select>
+      <input type="text" name="date_min" placeholder="20190415" />
+      <input type="text" name="date_max" placeholder="YYYYMMDD" />
+      <div class="btn date">搜尋 → </div>
+    </div>
     <main class="dashboard">
-      <h1 class="dashboard__object"></h1>
       <div class="dashboard__graph"></div>
       <ul class="dashboard__result"></ul>
     </main>
