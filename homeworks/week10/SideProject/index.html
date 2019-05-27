@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Sheets API Quickstart</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <link rel="stylesheet" href="main.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+      <button id="authorize_button" style="display: none;">Authorize</button>
+      <button id="signout_button" style="display: none;">Sign Out</button>
+    <select name="category">
+      <option value="MTR">MTR</option>
+      <option value="ISS">ISS</option>
+    </select>
+    <input type="text" name="date_min" placeholder="YYYYMMDD" />
+    <input type="text" name="date_max" placeholder="YYYYMMDD" />
+    <div class="btn date">送出</div>
+    <main class="dashboard">
+      <h1 class="dashboard__object"></h1>
+      <div class="dashboard__graph"></div>
+      <ul class="dashboard__result"></ul>
+    </main>
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+    <script src="auth.js"></script>
+    <script src="main.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};gapi.load('client:auth2', initClient)"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
+</html>
