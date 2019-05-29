@@ -1,5 +1,5 @@
-const CLIENT_ID = '366206569642-1qbckqr1vbfhc833v1n4714djjtbet15.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyCgXpxeDdwxEdvKmk5xTOyMIXrtta9Py-4';
+const CLIENT_ID = '<client-id>';
+const API_KEY = '<api-key';
 const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 const authorizeButton = document.getElementById('authorize_button');

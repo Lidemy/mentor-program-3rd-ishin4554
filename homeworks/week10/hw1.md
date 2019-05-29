@@ -25,9 +25,9 @@
   - [Javascript DOM 處理](https://ishin4554.github.io/2019/05/03/develope/js_DOM/)
 
 - 作業心得
-  - [hw1](../Week7/hw1/README.md)
-  - [hw2](../Week7/hw2/README.md)
-  - [hw3](../Week7/hw3/README.md)
+  - week7/hw1/README.md
+  - week7/hw2/README.md
+  - week7/hw3/README.md
 
 ## Week 8
 
@@ -50,9 +50,9 @@
   - [canvas 入門](https://ishin4554.github.io/2019/05/28/develope/js_canvas_basic/)
 
 - 作業心得
-  - [hw1](../Week8/hw1/README.md)
-  - [hw2](../Week8/hw2/README.md)
-  - [hw3](../Week8/hw3/README.md)
+  - week8/hw1/README.md
+  - week8/hw2/README.md
+  - week8/hw3/README.md
 
 ## Week 9
 
@@ -83,7 +83,7 @@
   - [D3 入門](https://ishin4554.github.io/2019/04/03/develope/js_d3_basic/)
 
 - 開發心得
-  - [side project 心得](SideProject/README.md) 
+  - week10/SideProject/README.md
 
 # 總回顧
 
