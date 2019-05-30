@@ -1,7 +1,7 @@
 <?php
   require_once('conn.php');
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
   $nickname = $_POST['nickname'];
 
   if(empty($username) || empty($password) || empty($nickname)) {

@@ -13,11 +13,17 @@ body{
   flex-direction: column;
   align-items: center;
 }
-a {
-  text-decoration: none;
+.nav a {
   color: #fff;
+  text-decoration: none;
 }
-a:hover{
+.board__comment a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background: #2962FF;
+}
+.board__comment a:hover{
   filter: brightness(50%);
 }
 .nav{
@@ -28,6 +34,18 @@ a:hover{
   justify-content: space-between;
   background-color: #2962FF;
   padding: 10px 20px;
+}
+.pagination{
+  display: flex;
+  justify-content: space-around;
+}
+.pagination a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background: #2962FF;
 }
 .flex--right > *{
   margin: 10px;
