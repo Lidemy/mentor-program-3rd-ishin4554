@@ -5,7 +5,7 @@
   $prev = $page-1;
   $next = $page+1;
   echo "<div class='pagination'>";
-    if ($next * $page_limit >= $length['COUNT(*)']) {
+    if ($next * $page_limit >= $length) {
       echo "<a href='./index.php?page=$prev'>prev</a>";
     }
     else if ($prev * $page_limit < 0) {

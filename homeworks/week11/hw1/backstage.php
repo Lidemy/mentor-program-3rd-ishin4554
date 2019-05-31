@@ -12,7 +12,13 @@
     <?php include 'template/navbar.php';?>
     
     <p>本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼</p>
-    <?php include 'template/board.php';?>
+    <?php 
+      if($permission === 'admin' || $permission === 'super admin'){
+        include 'template/board.php';
+      } else {
+        header('Location: index.php?page=0');
+      }
+      ?>
     <?php 
       include 'template/pagination.php';
     ?>

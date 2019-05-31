@@ -40,7 +40,7 @@
     public function getCommentLength(){
       $result = $this->conn->query("SELECT COUNT(*) FROM ishin4554_comments");
       $length = $result->fetch_assoc();
-      return $length;
+      return $length['COUNT(*)'];
     }
   }
 ?>

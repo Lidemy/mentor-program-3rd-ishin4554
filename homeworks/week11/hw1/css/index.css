@@ -71,15 +71,21 @@ button:hover{
   filter:brightness(110%);
 }
 /* user list */
-.user__header{
-  width: 300px;
-  display: flex;
-  justify-content: space-around;
-  border: 1px solid #000;
-  margin-top: 10px;
+th {
+  background-color: #2962FF;
+  color: #fff;
+  padding: 5px 10px;
 }
-.user__header > *{
-  margin: 10px;
+td{
+  padding: 10px 20px;
+}
+table {
+  width: 500px;
+  border: 1px solid #ddd;
+}
+td a {
+  padding: 5px 10px;
+  background-color: #2962FF;
 }
 
 /* comment list */
