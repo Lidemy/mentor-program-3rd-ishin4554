@@ -13,11 +13,12 @@ body{
   flex-direction: column;
   align-items: center;
 }
-.nav a {
+a {
   color: #fff;
   text-decoration: none;
 }
 .board__comment a {
+  color: #fff;
   display: inline-block;
   padding: 10px 20px;
   margin: 10px;
@@ -69,7 +70,19 @@ button{
 button:hover{
   filter:brightness(110%);
 }
-/* index */
+/* user list */
+.user__header{
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #000;
+  margin-top: 10px;
+}
+.user__header > *{
+  margin: 10px;
+}
+
+/* comment list */
 .board{
   display: flex;
   flex-direction: column;
@@ -141,3 +154,4 @@ input:not(.input__text):focus{
   font-size: 14px;
   margin-left: 10px;
 }
+

@@ -1,21 +1,19 @@
 <nav class="nav">
   <?php 
+    require_once('source/utils_user.php');
     echo "<div class='flex--left'>";
       echo "<a href='./index.php?page=0' class='nav--item nav__home'>留言板</a>";
     echo "</div>";
-    if(isset($_COOKIE["session"])){
+    if(isset($_COOKIE["sessionID"])){
       $is_login = TRUE;
-      $session = $_COOKIE["session"];
-      $sql = "SELECT * FROM ishin4554_users_certificate WHERE id = '$session'";
-      $result = $conn->query($sql);
-      $row = $result->fetch_assoc();
-      $username = $row['username'];
-      $sql = "SELECT * FROM ishin4554_users WHERE username = '$username'";
-      $result = $conn->query($sql);
-      $row = $result->fetch_assoc();
-      $permission = $row['permission'];
-      $user_id = $row['id'];
-      $nickname = $row['nickname'];
+      $sessionID = $_COOKIE["sessionID"];
+      $session = new Session($conn,NULL,$sessionID);
+      $username = $session->readSession();
+      $user = new User($conn, $username);
+      $info = $user->readUserByName();
+      $permission = $info['permission'];
+      $user_id = $info['id'];
+      $nickname = $info['nickname'];
       echo "<div class='flex--right'>";
         echo "<p>$nickname</p>";
         if ($permission === "admin") {

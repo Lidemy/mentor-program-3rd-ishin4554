@@ -1,5 +1,6 @@
 <?php
   require_once('conn.php');
+  require_once('source/utils_post.php');
   $comment = $_POST['comment'];
   $user_id = $_POST['user_id'];
   if(empty($comment)) {
@@ -8,8 +9,8 @@
           location = 'index.php?page=0';
         </script>";
   } else {
-    $sql = "INSERT INTO ishin4554_comments (user_id, content) VALUES ('$user_id','$comment')";
-    $result = $conn->query($sql);
+    $post = new Post($conn);
+    $post->addPost($comment, $user_id);
     header('location: index.php?page=0');
   }
 ?>

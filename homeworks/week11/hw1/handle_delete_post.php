@@ -1,11 +1,7 @@
 <?php
   require_once('conn.php');
+  require_once('source/utils_post.php');
   $post_id = $_GET['id'];
-  $sql = "DELETE FROM ishin4554_comments WHERE id = '$post_id'";
-  
-  if ($conn->query($sql)) {
-    header('Location: ./index.php?page=0');
-  } else {
-    echo $conn->$error;
-  }
+  $post = new Post($conn, $post_id);
+  $post->deletePost(); 
 ?>
