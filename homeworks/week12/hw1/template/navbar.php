@@ -1,7 +1,7 @@
 <nav class="nav">
   <?php 
-    require_once 'conn.php' ;
-    require_once 'source/utils_user.php' ;
+    require_once('conn.php');
+    require_once('source/utils_user.php');
     echo "<div class='flex--left'>";
       echo "<a href='./index.php?page=0' class='nav--item nav__home'>留言板</a>";
     echo "</div>";

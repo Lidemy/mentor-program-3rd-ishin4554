@@ -44,8 +44,12 @@
       }
     }
 
-    public function getCommentLength(){
-      $result = $this->conn->query("SELECT COUNT(*) FROM ishin4554_comments WHERE parent_id IS NULL");
+    public function getCommentLength($is_all){
+      if($is_all) {
+        $result = $this->conn->query("SELECT COUNT(*) FROM ishin4554_comments");
+      } else {
+        $result = $this->conn->query("SELECT COUNT(*) FROM ishin4554_comments WHERE parent_id = 0 AND is_delete IS NULL");
+      }
       $length = $result->fetch_assoc();
       return $length['COUNT(*)'];
     }
@@ -76,7 +80,7 @@ class Like extends Post {
       $sql = "SELECT COUNT(*) FROM $this->table WHERE user_id = '$this->user_id' AND comment_id = '$this->id'";
       $result = $this->conn->query($sql);
       $like = $result->fetch_assoc()['COUNT(*)'];
-      return $like;
+      return (integer)$like;
     }
     public function addLike(){
       $sql = "INSERT INTO $this->table (user_id, comment_id) VALUES ('$this->user_id','$this->id')";

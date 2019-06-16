@@ -1,4 +1,16 @@
 
+function dq(selector) {
+  return document.querySelector(selector);
+}
+
+function getID() {
+  let loginUser = false;
+  if (dq('.input__form input[name="user_id"]')) {
+    loginUser = dq('.input__form input[name="user_id"]').getAttribute('value');
+  }
+  return Number(loginUser);
+}
+
 async function getLike(userID, postID) {
   const response = await fetch(`./handle_post_like.php?user_id=${userID}&post_id=${postID}`, {
     method: 'GET',
@@ -7,66 +19,83 @@ async function getLike(userID, postID) {
   return data;
 }
 
-async function generateComment(content, isUser) {
+async function generateComment(content, userID, depth) {
   const item = document.createElement('div');
-  await getLike(content.user_id, content.post_id).then((data) => {
-    item.innerHTML = `
-    <div class='board__comment'>
-      <div class='comment__header'>
-        <div class='header__nickname'>${content.nickname}</div>
-        <div class='header__timestamp'>${content.time}</div>
-      </div>
-    <div class='comment__content'>
-      ${content.content}
-      <div class='comment__dash'>
-        <div class='dash__like' data-post='${content.post_id}'>Like<span class='like__count'>${data.like_count}</span></div>
-        <div class='dash__more' data-post='${content.post_id}'>More</div>
-      </div>
-    </div>`;
-    if (isUser) {
-      const html = `
-        <a method='GET' href='./handle_delete_post.php?id=${content.time}'>delete</a>
-        <a method='GET' href='./update_post.php?id=${content.post_id}'>edit</a>
-        </div>
-      `;
-      item.innerHTML += html;
-    } else {
-      item.innerHTML += '</div>';
-    }
-  });
+  let html = '';
+  if (userID) {
+    html += `<div class='board__comment bg--head' data-post='${content.post_id}'>`;
+  } else {
+    html += `<div class='board__comment' data-post='${content.post_id}'>`;
+  }
+  html += `
+    <div class='comment__header'>
+      <div class='header__nickname'>${content.nickname}</div>
+      <div class='header__timestamp'>${content.time}</div>
+    </div>
+  <div class='comment__content'>
+    ${content.content}
+    <div class='comment__dash'>`;
+  if (content.is_like) {
+    html += `<div class='dash__like bg--like' data-post='${content.post_id}'>Like<span class='like__count'>${content.like_count}</span></div>`;
+  } else {
+    html += `<div class='dash__like' data-post='${content.post_id}'>Like<span class='like__count'>${content.like_count}</span></div>`;
+  }
+  if (depth < 15) {
+    html += `<div class='dash__more' data-post='${content.post_id}'>More</div>`;
+  }
+  if (userID) {
+    html += `
+      <a method='GET' href='./handle_delete_post.php?id=${content.post_id}'>delete</a>
+      <a method='GET' href='./update_post.php?id=${content.post_id}'>edit</a>`;
+  }
+  html += '</div></div>';
+  item.innerHTML = html;
   return item;
 }
 
-function dq(selector) {
-  return document.querySelector(selector);
+function getDepth(target) {
+  let depth = 0;
+  let parent = target.parentNode;
+  while (!parent.classList.contains('board')) {
+    parent = parent.parentNode;
+    depth += 1;
+  }
+  return depth;
 }
+
 dq('.board').addEventListener('click', (evt) => {
   if (evt.target.classList.contains('dash__more')) {
     const postID = evt.target.getAttribute('data-post');
-    let loginUser = false;
-    if (dq('.input__form input[name="user_id"]')) {
-      loginUser = dq('.input__form input[name="user_id"]').getAttribute('value');
-    }
-    fetch(`./handle_post_child.php?post_id=${postID}`, {
+    const container = document.createElement('div');
+    const loginUser = getID();
+    fetch(`./handle_post_child.php?post_id=${postID}&user_id=${loginUser}`, {
       method: 'GET',
     }).then(res => res.text())
       .then((text) => {
         if (text) {
           try {
             const data = JSON.parse(text);
+            const depth = getDepth(evt.target);
             data.forEach((content) => {
-              generateComment(content, content.post_id === loginUser).then((comment) => {
-                evt.target.parentNode.parentNode.append(comment);
+              generateComment(content, content.user_id === loginUser, depth).then((comment) => {
+                container.append(comment);
               });
             });
+            evt.target.parentNode.parentNode.append(container);
+            evt.target.parentNode.removeChild(evt.target);
           } catch (err) {
-            console.log(err);
+            console.log(`1: ${err}`);
+            if (!loginUser) {
+              alert('還沒有留言，請登入留言');
+            } else {
+              evt.target.parentNode.removeChild(evt.target);
+            }
           }
         }
       })
       .catch((err) => {
-        console.log(err);
-        alert('還沒有留言，請登入留言');
+        console.log(`2: ${err}`);
+        evt.target.parentNode.removeChild(evt.target);
       });
     if (loginUser) {
       const input = document.createElement('div');
@@ -78,12 +107,12 @@ dq('.board').addEventListener('click', (evt) => {
           <button type='submit' class='input__submit'>提交</button>
         </form>
         `;
-      evt.target.parentNode.parentNode.parentNode.append(input);
+      evt.target.parentNode.parentNode.append(input);
     }
   }
   if (evt.target.classList.contains('dash__like')) {
-    if (dq('.input__form input[name="user_id"]')) {
-      const userID = dq('.input__form input[name="user_id"]').getAttribute('value');
+    if (getID()) {
+      const userID = getID();
       const postID = evt.target.getAttribute('data-post');
       getLike(userID, postID).then((data) => {
         evt.target.classList.toggle('bg--like');

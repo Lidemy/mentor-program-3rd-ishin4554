@@ -1,6 +1,6 @@
 <?php
-  require_once 'conn.php';
-  require_once 'source/utils_post.php';
+  require_once('conn.php');
+  require_once('source/utils_post.php');
   $post_id = $_GET['post_id'];
   $user_id = $_GET['user_id'];
   $like = new Like($conn, $post_id, $user_id);

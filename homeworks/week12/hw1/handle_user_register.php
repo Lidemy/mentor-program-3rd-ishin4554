@@ -18,7 +18,7 @@
       </script>";
     } else {
       $user->createUser($password, $nickname);
-      // header('location: login.php');
+      header('location: login.php');
     }
   }
 ?>

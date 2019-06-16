@@ -1,6 +1,7 @@
 <?php
   require_once('conn.php');
-  require_once('source/utils_user.php')
+  require_once('source/utils_user.php');
+  require_once('source/utils_post.php');
 ?>
 <html>
   <head>
@@ -11,6 +12,7 @@
   <body>
     <?php include 'template/navbar.php';?>
     <p>本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼</p>
+    <h1>管理後台</h1>
     <?php 
       if($permission === 'admin' || $permission === 'super admin'){
         include 'template/board.php';
