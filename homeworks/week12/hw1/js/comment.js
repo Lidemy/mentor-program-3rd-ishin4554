@@ -1,4 +1,3 @@
-
 function dq(selector) {
   return document.querySelector(selector);
 }
@@ -45,8 +44,8 @@ async function generateComment(content, userID, depth) {
   }
   if (userID) {
     html += `
-      <a method='GET' href='./handle_delete_post.php?id=${content.post_id}'>delete</a>
-      <a method='GET' href='./update_post.php?id=${content.post_id}'>edit</a>`;
+      <a method='GET' class='dash__delete' href='./handle_delete_post.php?id=${content.post_id}'>delete</a>
+      <a method='GET'  class='dash__edit' href='./update_post.php?id=${content.post_id}'>edit</a>`;
   }
   html += '</div></div>';
   item.innerHTML = html;
@@ -77,9 +76,10 @@ dq('.board').addEventListener('click', (evt) => {
             const data = JSON.parse(text);
             const depth = getDepth(evt.target);
             data.forEach((content) => {
-              generateComment(content, content.user_id === loginUser, depth).then((comment) => {
-                container.append(comment);
-              });
+              generateComment(content, content.user_id === content.parent_user_id, depth)
+                .then((comment) => {
+                  container.append(comment);
+                });
             });
             evt.target.parentNode.parentNode.append(container);
             evt.target.parentNode.removeChild(evt.target);

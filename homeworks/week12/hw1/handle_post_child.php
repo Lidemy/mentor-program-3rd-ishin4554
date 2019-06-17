@@ -17,6 +17,7 @@
     $post_info = array(
     "post_id"=> $child_post_id, 
     "user_id"=>$child_user_id,
+    "parent_user_id"=> $child_user_id, 
     "nickname"=>$child_post_user->readUserById($child_user_id)['nickname'], 
     "time"=>$child_comment['time'],
     "content"=>htmlspecialchars($child_comment['content'], ENT_QUOTES, 'utf-8'),

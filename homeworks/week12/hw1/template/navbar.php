@@ -18,11 +18,11 @@
       echo "<div class='flex--right'>";
         echo "<p>$nickname</p>";
         if ($permission === "admin") {
-          echo "<a href='./backstage.php?page=0' class='nav--item nav__logout'>後台</a>";
+          echo "<a href='./backstage.php?page=0' class='nav--item nav__backstage'>後台</a>";
         }
         if ($permission === "super admin") {
-          echo "<a href='./backstage.php?page=0' class='nav--item nav__logout'>後台</a>";
-          echo "<a href='./permission.php?page=0' class='nav--item nav__logout'>權限管理</a>";
+          echo "<a href='./backstage.php?page=0' class='nav--item nav__backstage'>後台</a>";
+          echo "<a href='./permission.php?page=0' class='nav--item nav__permission'>權限管理</a>";
         }
         echo "<a href='./handle_logout.php' class='nav--item nav__logout'>登出</a>";
       echo "</div>";
