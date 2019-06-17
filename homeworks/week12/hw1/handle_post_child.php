@@ -6,6 +6,8 @@
   $login_id = $_GET['user_id'];
   $child_result = new Post($conn, $post_id);
   $child_posts = $child_result->getLevelComments();
+  $child_row = $child_result->readPost();
+  $parent_user_id = $child_row['user_id'];
   $content_list = array();
   while($child_post = $child_posts->fetch_assoc()){
     $child_post_id = $child_post['lv2'];
@@ -17,7 +19,7 @@
     $post_info = array(
     "post_id"=> $child_post_id, 
     "user_id"=>$child_user_id,
-    "parent_user_id"=> $child_user_id, 
+    "parent_user_id"=> $parent_user_id, 
     "nickname"=>$child_post_user->readUserById($child_user_id)['nickname'], 
     "time"=>$child_comment['time'],
     "content"=>htmlspecialchars($child_comment['content'], ENT_QUOTES, 'utf-8'),

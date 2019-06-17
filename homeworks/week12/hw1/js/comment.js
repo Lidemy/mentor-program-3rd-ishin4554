@@ -21,7 +21,7 @@ async function getLike(userID, postID) {
 async function generateComment(content, userID, depth) {
   const item = document.createElement('div');
   let html = '';
-  if (userID) {
+  if (content.user_id === content.parent_user_id) {
     html += `<div class='board__comment bg--head' data-post='${content.post_id}'>`;
   } else {
     html += `<div class='board__comment' data-post='${content.post_id}'>`;
@@ -42,7 +42,7 @@ async function generateComment(content, userID, depth) {
   if (depth < 15) {
     html += `<div class='dash__more' data-post='${content.post_id}'>More</div>`;
   }
-  if (userID) {
+  if (userID === content.user_id) {
     html += `
       <a method='GET' class='dash__delete' href='./handle_delete_post.php?id=${content.post_id}'>delete</a>
       <a method='GET'  class='dash__edit' href='./update_post.php?id=${content.post_id}'>edit</a>`;
@@ -76,7 +76,7 @@ dq('.board').addEventListener('click', (evt) => {
             const data = JSON.parse(text);
             const depth = getDepth(evt.target);
             data.forEach((content) => {
-              generateComment(content, content.user_id === content.parent_user_id, depth)
+              generateComment(content, loginUser, depth)
                 .then((comment) => {
                   container.append(comment);
                 });
