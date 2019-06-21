@@ -1,0 +1,13 @@
+body{
+  padding: 50px;
+}
+
+.container{
+  text-align: center;
+}
+
+.card{
+  vertical-align: top;
+  display: inline-block;
+  margin: 10px;
+}

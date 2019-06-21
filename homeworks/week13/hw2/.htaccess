@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /group1/ishin4554/w13/hw2/
+RewriteRule ^login$ login.html [NC,L]
+RewriteRule ^register$ register.html [NC,L]
+RewriteRule ^$ index.html [NC,L]
+RewriteRule ^list/([0-9]+)$ php/handle_request.php?user_id=$1 [L,NC]
+RewriteRule ^lists$ php/handle_request.php [L,NC]
+RewriteRule ^list/([0-9]+)/task/([0-9]+)$ php/handle_request.php?user_id=$1&task_id=$2 [L,NC]
+
