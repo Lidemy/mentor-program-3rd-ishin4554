@@ -1,0 +1,11 @@
+.container{
+  padding: 50px;
+}
+
+.pagination{
+  margin: 50px;
+}
+
+.bg--parent{
+  background: #f8ede6;
+}

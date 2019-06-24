@@ -16,10 +16,10 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     $tasks = Array();
     while($row = $result->fetch_assoc()){
       $task = Array(
-        "task_id"=>$row['id'],
-        "name"=>$row['name'], 
-        "date"=>$row['date'], 
-        "finish-date"=>$row['finish_date'], 
+        "task_id"=>htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'),
+        "name"=>htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'),
+        "date"=>htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'), 
+        "finish-date"=>htmlspecialchars($row['finish_date'], ENT_QUOTES, 'UTF-8'), 
       );
       array_push($tasks, $task);
     }
@@ -39,17 +39,17 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
       $tasks = Array();
       while($row = $result->fetch_assoc()){
         $task = Array(
-          "task_id"=>$row['id'], 
-          "name"=>$row['name'], 
-          "date"=>$row['date'], 
-          "finish-date"=>$row['finish_date'], 
+          "task_id"=>htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'), 
+          "name"=>htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'), 
+          "date"=>htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'), 
+          "finish-date"=>htmlspecialchars($row['finish_date'], ENT_QUOTES, 'UTF-8'), 
         );
         array_push($tasks, $task);
       }
       $user_info = Array(
-        'user_id'=>$user['id'],
-        'nickname'=>$user['nickname'],
-        'intro'=>$user['intro']
+        'user_id'=>htmlspecialchars($user['id'], ENT_QUOTES, 'UTF-8'),
+        'nickname'=>htmlspecialchars($user['nickname'], ENT_QUOTES, 'UTF-8'),
+        'intro'=>htmlspecialchars($user['intro'], ENT_QUOTES, 'UTF-8')
       );
       $user_tasks = Array(
         'user'=>$user_info,
@@ -112,10 +112,10 @@ if($_SERVER['REQUEST_METHOD'] == 'PATCH'){
     $tasks = Array();
     while($row = $result->fetch_assoc()){
       $task = Array(
-        "name"=>$row['name'], 
-        "date"=>$row['date'], 
-        "finish-date"=>$row['finish_date'], 
-        "task_id"=>$row['id'],
+        "task_id"=>htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'), 
+        "name"=>htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'), 
+        "date"=>htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'), 
+        "finish-date"=>htmlspecialchars($row['finish_date'], ENT_QUOTES, 'UTF-8'), 
       );
       array_push($tasks, $task);
     }
@@ -141,10 +141,10 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     $tasks = Array();
     while($row = $result->fetch_assoc()){
       $task = Array(
-        "name"=>$row['name'], 
-        "date"=>$row['date'], 
-        "finish-date"=>$row['finish_date'], 
-        "task_id"=>$row['id'],
+        "task_id"=>htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8'), 
+        "name"=>htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8'), 
+        "date"=>htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8'), 
+        "finish-date"=>htmlspecialchars($row['finish_date'], ENT_QUOTES, 'UTF-8'), 
       );
       array_push($tasks, $task);
     }

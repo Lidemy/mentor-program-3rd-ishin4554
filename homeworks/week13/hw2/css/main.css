@@ -2,7 +2,7 @@ body{
   padding: 50px;
 }
 
-.container{
+.container-fluid{
   text-align: center;
 }
 
@@ -10,4 +10,5 @@ body{
   vertical-align: top;
   display: inline-block;
   margin: 10px;
+  text-align: left;
 }

@@ -150,12 +150,12 @@ function generateList(auth, list) {
       <div class="card-body">
         <h5 class="card-title">
           <span>${list.user.nickname}</span>
-          <a href="#" class="badge badge-warning nickname__edit">Edit</a>
+          <a href="#" class="badge badge-warning nickname__edit">Edit(TEMP)</a>
         </h5>
 
         <p class="card-text">
           <span>${list.user.intro}</span>
-          <a href="#" class="badge badge-warning intro__edit">Edit</a>
+          <a href="#" class="badge badge-warning intro__edit">Edit(TEMP)</a>
         </p>
       </div>`;
   } else {
@@ -170,7 +170,7 @@ function generateList(auth, list) {
         ${generateTask(auth, userID, list.tasks)}
       </ul>
       <div class="card-body">
-        <a href="https://github.com/Lidemy/mentor-program-3rd-ishin4554" class="card-link">Github link</a>
+        <a href="https://github.com/Lidemy/mentor-program-3rd-ishin4554" class="card-link">Github link(TEMP)</a>
       </div>
     </div>
     `;

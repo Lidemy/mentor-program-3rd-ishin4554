@@ -15,8 +15,11 @@
       $stmt->bind_param('s', $username);
       $stmt->execute();
       $data = $stmt->get_result();
-      $row= $data->fetch_assoc();
-      return $row;
+      if (empty($data)){
+        return false;
+      } else {
+        return $data->fetch_assoc();
+      }   
     }
     public function readAllUser(){
       $sql = "SELECT * FROM $this->table";
