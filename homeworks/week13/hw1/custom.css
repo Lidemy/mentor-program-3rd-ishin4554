@@ -1,0 +1,21 @@
+.container__custom{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 960px;
+}
+.row__custom{
+  display: flex;
+}
+.c-1{flex: 0 0 8.3%;}
+.c-2{flex: 0 0 16.6%;}
+.c-3{flex: 0 0 24.9%;}
+.c-4{flex: 0 0 33.2%;}
+.c-5{flex: 0 0 41.5%;}
+.c-6{flex: 0 0 50%;}
+.c-7{flex: 0 0 58.1%;}
+.c-8{flex: 0 0 66.4%;}
+.c-9{flex: 0 0 74.7%;}
+.c-10{flex: 0 0 83%;}
+.c-11{flex: 0 0 91.3%;}
+.c-12{flex: 0 0 100%;}

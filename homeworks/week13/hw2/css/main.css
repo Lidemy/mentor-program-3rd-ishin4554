@@ -1,0 +1,14 @@
+body{
+  padding: 50px;
+}
+
+.container-fluid{
+  text-align: center;
+}
+
+.card{
+  vertical-align: top;
+  display: inline-block;
+  margin: 10px;
+  text-align: left;
+}

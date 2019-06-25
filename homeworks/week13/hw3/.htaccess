@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /group1/ishin4554/w13/hw3/
+RewriteRule ^login$ login.html [NC,L]
+RewriteRule ^register$ register.html [NC,L]
+RewriteRule ^backstage$ backstage.html [NC,L]
+RewriteRule ^permission$ permission.html [NC,L]
+RewriteRule ^$ index.html [NC,L]
+RewriteRule ^user/([0-9]+)$ php/handle_user.php?user_id=$1 [L,NC]
+RewriteRule ^users$ php/handle_user.php [L,NC]
+RewriteRule ^post/([0-9]+)$ php/handle_post.php?post_id=$1 [L,NC]
+RewriteRule ^posts$ php/handle_post.php [L,NC]
+RewriteRule ^post/([0-9]+)/like$ php/handle_like.php?post_id=$1 [L,NC]
+
+
