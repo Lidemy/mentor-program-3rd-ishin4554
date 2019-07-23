@@ -1,0 +1,148 @@
+// color 
+$red:#D44F60
+$blue:#2B2B61
+$grey:#F7F7F7
+$yellow:#F8EBD8
+
+// position 
+@mixin size($w, $h:$w)
+  width: $w
+  height: $h
+@mixin flexCenter 
+  display: flex
+  justify-content: center
+  align-items: center
+@mixin absCenter
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+// font setting 
+$h1:92px
+$h2:24px
+$p:18px
+$small:14px
+
+@mixin title 
+  font-weight: 600
+  font-family: '微軟正黑體'
+  letter-spacing: 4px
+  font-size: $h1
+  margin: 0
+@mixin subtitle
+  font-weight: 200
+  font-family: '微軟正黑體'
+  letter-spacing: 2px
+  font-size: $h2
+@mixin intro 
+  font-weight: 500
+  font-family: '微軟正黑體'
+  font-size: $h2
+@mixin small 
+  font-weight: 200
+  font-family: '微軟正黑體'
+  letter-spacing: 2px
+  font-size: $small
+
+// components 
+@mixin btn 
+  +size(100px, auto)
+  color: white
+  cursor: pointer
+  padding: 8px 20px
+  background: $red
+  @include small  
+  &:hover 
+    filter: brightness(1.2)
+
+.cursor 
+  +flexCenter
+  +size(60px)
+  font-size: $small
+  font-weight: 500
+  color: white
+  position: absolute
+  z-index: 30
+  background: black
+  border-radius: 50%
+  transition: 0.1s
+  text-align: center
+.info__btn
+  @include btn
+
+html, body 
+  cursor: none
+  +size(100%)
+  margin: 0
+  padding: 0
+main 
+  width: 100%
+  section.landing
+    position: relative
+    color: white
+    height: 100%
+    & span 
+      transition: 0.2s
+    .sp:hover
+      -webkit-text-stroke: 1px white
+      color: transparent  
+    .how:hover 
+      -webkit-text-stroke: 1px white
+      color: transparent  
+    img
+      position: absolute
+      object-fit: cover 
+      z-index: 1
+      filter: brightness(.3)
+      width: 100%
+      height: 100%
+      overflow: hidden
+    .landing__info
+      +absCenter
+      +size(70%, auto)
+      z-index: 2
+      display: flex
+      flex-direction: column
+      .info__logo
+        @include intro
+        margin: 0
+      .info__title
+        @include title
+      .info__intro
+        @include subtitle
+      
+.login
+  border-radius: 2px 
+  padding: 40px
+  background: $yellow
+  position: fixed
+  z-index: 20
+  display: flex
+  justify-content: center
+  flex-direction: column
+  +size(300px, 400px)
+  +absCenter
+  &>*
+    margin: 10px 0
+  ::placeholder
+    color: rgba($blue, 0.2)
+  h3
+    color: $red 
+    font-size: $h2
+  input
+    font-size: $p
+    border: none
+    outline: none
+    background: transparent
+    border-bottom: 2px solid $red
+  button
+    border: none
+    @include btn
+  p
+    @include small
+  .close
+    position: absolute
+    right: 20px
+    top: 10px
+

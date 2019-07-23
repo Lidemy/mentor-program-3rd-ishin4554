@@ -1,0 +1,140 @@
+@charset "UTF-8";
+.cursor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  position: absolute;
+  z-index: 30;
+  background: black;
+  border-radius: 50%;
+  transition: 0.1s;
+  text-align: center; }
+
+.info__btn {
+  width: 100px;
+  height: auto;
+  color: white;
+  cursor: pointer;
+  padding: 8px 20px;
+  background: #D44F60;
+  font-weight: 200;
+  font-family: "微軟正黑體";
+  letter-spacing: 2px;
+  font-size: 14px; }
+  .info__btn:hover {
+    filter: brightness(1.2); }
+
+html, body {
+  cursor: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+main {
+  width: 100%; }
+  main section.landing {
+    position: relative;
+    color: white;
+    height: 100%; }
+    main section.landing span {
+      transition: 0.2s; }
+    main section.landing .sp:hover {
+      -webkit-text-stroke: 1px white;
+      color: transparent; }
+    main section.landing .how:hover {
+      -webkit-text-stroke: 1px white;
+      color: transparent; }
+    main section.landing img {
+      position: absolute;
+      object-fit: cover;
+      z-index: 1;
+      filter: brightness(0.3);
+      width: 100%;
+      height: 100%;
+      overflow: hidden; }
+    main section.landing .landing__info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: auto;
+      z-index: 2;
+      display: flex;
+      flex-direction: column; }
+      main section.landing .landing__info .info__logo {
+        font-weight: 500;
+        font-family: "微軟正黑體";
+        font-size: 24px;
+        margin: 0; }
+      main section.landing .landing__info .info__title {
+        font-weight: 600;
+        font-family: "微軟正黑體";
+        letter-spacing: 4px;
+        font-size: 92px;
+        margin: 0; }
+      main section.landing .landing__info .info__intro {
+        font-weight: 200;
+        font-family: "微軟正黑體";
+        letter-spacing: 2px;
+        font-size: 24px; }
+
+.login {
+  border-radius: 2px;
+  padding: 40px;
+  background: #F8EBD8;
+  position: fixed;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  .login > * {
+    margin: 10px 0; }
+  .login ::placeholder {
+    color: rgba(43, 43, 97, 0.2); }
+  .login h3 {
+    color: #D44F60;
+    font-size: 24px; }
+  .login input {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 2px solid #D44F60; }
+  .login button {
+    border: none;
+    width: 100px;
+    height: auto;
+    color: white;
+    cursor: pointer;
+    padding: 8px 20px;
+    background: #D44F60;
+    font-weight: 200;
+    font-family: "微軟正黑體";
+    letter-spacing: 2px;
+    font-size: 14px; }
+    .login button:hover {
+      filter: brightness(1.2); }
+  .login p {
+    font-weight: 200;
+    font-family: "微軟正黑體";
+    letter-spacing: 2px;
+    font-size: 14px; }
+  .login .close {
+    position: absolute;
+    right: 20px;
+    top: 10px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,65 @@
+html 
+  head
+    link(rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous")
+    title dashboard
+    link(rel='stylesheet' href='css/dashboard.css')
+    script(src="https://d3js.org/d3.v5.min.js") 
+    meta(charset='utf-8')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet")
+  body
+    nav.navbar.navbar-expand-lg
+      ul.navbar-nav
+        li.nav-item.home
+          i(class="material-icons") home
+        li.nav-item 
+          i.btn__total(class="material-icons") bar_chart
+        li.nav-item 
+          .input-group
+            select.custom-select.mr-sm-2
+              option 選擇分類
+              option(value='MTR') MTR
+              option(value='ISS') ISS
+              option(value='IAR') IAR
+        li.nav-item 
+          .input-group
+            input.date__start(type='date' class='form-control' placeholder='start date')
+        li.nav-item 
+          .input-group
+            input.date__end(type='date' class='form-control' placeholder='start date')
+        li.nav-item 
+          .input-group
+            input.date__goal(type='text' class='form-control' placeholder='total')
+        li.nav-item 
+          .input-group
+            button.date__submit(type='submit' class='btn  btn-primary') search
+    .row.justify-content-md-center
+      .col-md-2
+        h2.days xxx
+      .col-md-2
+        h2.total__time xxx
+      .col-md-2
+        h2.average__time xxx
+    .container
+      .dashboard__time
+        .date ???
+        .nowTime ??? 
+        .loseTime ???
+      .row.justify-content-md-center
+        .col-md-10.board
+          .graph 請輸入範圍
+          .card.range
+            p.days xxx
+            p.total__time xxx
+            p.average__time xxx
+            p.last__days xxx 
+            p.last__time xxx
+            p.last__averagetime xxx
+
+    script(src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+    crossorigin="anonymous")
+    script(src="js/main.js")

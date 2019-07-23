@@ -1,0 +1,187 @@
+@charset "UTF-8";
+* {
+  font-family: "微軟正黑體"; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #F7F7F7; }
+
+nav.navbar {
+  background: white;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 2px 2px 2px 2px rgba(247, 247, 247, 0.8); }
+  nav.navbar ul > * {
+    margin: 5px; }
+
+.line {
+  fill: none;
+  stroke: #D44F60;
+  stroke-width: 3; }
+
+.line:hover::after {
+  content: attr("data-value");
+  color: #000; }
+
+.board {
+  display: flex; }
+  .board .graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 400px;
+    background: white;
+    border-radius: 5px; }
+  .board .range {
+    width: 30%; }
+
+.tick line {
+  stroke: rgba(0, 0, 0, 0.1); }
+
+path.domain {
+  display: none; }
+
+.row {
+  margin-top: 20px; }
+
+.dot {
+  fill: white;
+  stroke: #D44F60;
+  stroke-width: 3; }
+
+.lower {
+  fill: #D44F60; }
+
+.dot:hover {
+  stroke-width: 3;
+  stroke: #2B2B61; }
+
+.dashboard__time {
+  font-size: 14px;
+  font-weight: 300;
+  background: #2B2B61;
+  color: white;
+  position: fixed;
+  z-index: 20;
+  left: -5px;
+  padding: 20px 30px 20px 10px;
+  border-radius: 5px; }
+  .dashboard__time > * {
+    margin: 5px; }
+
+.card {
+  border: none;
+  width: 300px;
+  display: inline-block;
+  background: white;
+  border-radius: 5px;
+  margin-left: 10px; }
+  .card h3 {
+    margin-bottom: 10px; }
+  .card > p {
+    color: #2B2B61;
+    padding: 20px;
+    width: 100%;
+    transition: 0.2s;
+    margin: 0; }
+  .card > p:hover {
+    background: #2B2B61;
+    color: white; }
+  .card .last__days::before {
+    font-size: 12px;
+    content: "剩餘天數: ";
+    opacity: 0.7; }
+  .card .last__days::after {
+    font-size: 12px;
+    content: "  days";
+    opacity: 0.7; }
+  .card .last__time::before {
+    font-size: 12px;
+    content: "剩餘總時數: ";
+    opacity: 0.7; }
+  .card .last__time::after {
+    font-size: 12px;
+    content: "  hours";
+    opacity: 0.7; }
+  .card .last__averagetime::before {
+    font-size: 12px;
+    content: "剩餘平均時數: ";
+    opacity: 0.7; }
+  .card .last__averagetime::after {
+    font-size: 12px;
+    content: "  hours";
+    opacity: 0.7; }
+
+.dashboard__time > * {
+  margin-left: 10px; }
+.dashboard__time .nowTime::before {
+  font-size: 12px;
+  content: "時數: ";
+  opacity: 0.7; }
+.dashboard__time .nowTime::after {
+  font-size: 12px;
+  content: "  hours";
+  opacity: 0.7; }
+.dashboard__time .loseTime::before {
+  font-size: 12px;
+  content: "還差: ";
+  opacity: 0.7; }
+.dashboard__time .loseTime::after {
+  font-size: 12px;
+  content: "  hours";
+  opacity: 0.7; }
+.dashboard__time .date::before {
+  font-size: 12px;
+  content: "日期: ";
+  opacity: 0.7; }
+.dashboard__time .date::after {
+  font-size: 12px;
+  content: "";
+  opacity: 0.7; }
+
+.days::before {
+  font-size: 12px;
+  content: "總天數: ";
+  opacity: 0.7; }
+.days::after {
+  font-size: 12px;
+  content: "  days";
+  opacity: 0.7; }
+
+.total__time::before {
+  font-size: 12px;
+  content: "總時數: ";
+  opacity: 0.7; }
+.total__time::after {
+  font-size: 12px;
+  content: "  hours";
+  opacity: 0.7; }
+
+.average__time::before {
+  font-size: 12px;
+  content: "平均時數: ";
+  opacity: 0.7; }
+.average__time::after {
+  font-size: 12px;
+  content: "  hours";
+  opacity: 0.7; }
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+i.material-icons {
+  cursor: pointer;
+  color: #2B2B61;
+  font-size: 24px;
+  padding: 0 10px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
+
+i.material-icons:hover {
+  color: #D44F60; }
+
+/*# sourceMappingURL=dashboard.css.map */
