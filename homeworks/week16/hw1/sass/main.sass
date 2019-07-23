@@ -1,0 +1,114 @@
+$white:#fff
+$purple:#6441A4
+=reset
+  html, body 
+    width: 100%
+    margin: 0
+    background-color: $white
+
+=flexCenter 
+  display: flex
+  justify-content: center
+  align-items: center
+
+body nav 
+  +flexCenter 
+  position: block
+  top: 0
+  width: 100%
+  height: 50px
+  background-color: $purple
+
+nav p
+  width: auto
+  display: inline-block
+  padding: 0
+  padding-left: 50px
+  color: $white
+
+nav ul 
+  list-style: none
+  display: flex
+  justify-content: flex-start
+  li 
+    cursor: pointer
+    color: $white
+    margin: 10px
+    &:hover 
+      filter: brightness(70%)
+
+.games__list 
+  +flexCenter
+  margin: 0 auto
+  margin-top: 30px
+  width: 80%
+  flex-wrap: wrap
+  li 
+    border-radius: 3px
+    overflow: hidden
+    margin: 10px
+    display: flex
+    flex-direction: column
+    width: 20%
+    background-color: $white
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.1)
+    transition: .2s
+    &:hover
+      background-color: #6441A4 
+      color: $white
+    &:active
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.1)
+      transform: translate(2px,2px)
+
+img
+  object-fit: cover
+  width: 100%
+  height: 40%
+
+.bot
+  display: flex
+  justify-content: space-around
+  margin: 10px
+  img
+    width: 40px
+    height: 40px
+    border-radius: 50%
+  
+.info
+  width: 60%
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+
+h4 
+  white-space: nowrap 
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 100%
+  margin: 0
+
+p 
+  white-space: nowrap 
+  overflow: hidden
+  text-overflow: ellipsis
+  width: 100%
+  margin: 0
+
+
+.search 
+  margin-left: 10px
+  display: flex
+  justify-content: center
+  align-self: auto
+
+.search input 
+  outline: none
+
+.search .search__btn 
+  cursor: pointer
+  margin-left: 10px
+  background: #fff
+  color: #6441A4
+  padding: 2px 20px
+  &:hover 
+    filter: brightness(80%)
