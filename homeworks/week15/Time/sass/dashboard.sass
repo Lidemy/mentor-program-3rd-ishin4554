@@ -1,0 +1,125 @@
+$red:#D44F60
+$blue:#2B2B61
+$grey:#F7F7F7
+$yellow:#F8EBD8
+$green:#93bebc
+*
+  font-family: '微軟正黑體'
+@mixin text($before, $after) 
+  &::before
+    font-size: 12px
+    content: $before
+    opacity: .7
+  &::after
+    font-size: 12px
+    content: $after
+    opacity: .7
+body 
+  margin: 0
+  padding: 0
+  background: $grey
+nav.navbar
+  background: white
+  height: 60px
+  display: flex
+  justify-content: center
+  box-shadow: 2px 2px 2px 2px rgba($grey, 0.8)
+  ul>*
+    margin: 5px
+.line 
+  fill: none
+  stroke: $red
+  stroke-width: 3
+.line:hover::after 
+  content: attr('data-value')
+  color: #000
+.board
+  display: flex
+  .graph
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 70%
+    height: 400px
+    background: white
+    border-radius: 5px
+  .range
+    width: 30%
+.tick line
+  stroke: rgba(0,0,0,0.1)
+path.domain 
+  display: none
+.row 
+  margin-top: 20px
+.dot
+  fill: white
+  stroke: $red
+  stroke-width: 3
+.lower
+  fill: $red
+.dot:hover
+  stroke-width: 3
+  stroke: $blue
+.dashboard__time
+  font-size: 14px
+  font-weight: 300
+  background: $blue
+  color: white
+  position: fixed
+  z-index: 20
+  left: -5px
+  padding: 20px 30px 20px 10px
+  border-radius: 5px
+  &>*
+    margin: 5px
+.card
+  border: none
+  width: 300px
+  display: inline-block
+  background: white
+  border-radius: 5px
+  margin-left: 10px
+  h3 
+    margin-bottom: 10px
+  &>p
+    color: $blue
+    padding: 20px
+    width: 100%
+    transition: .2s
+    margin: 0
+  &>p:hover
+    background: $blue
+    color: white
+  .last__days
+    +text('剩餘天數: ','  days')
+  .last__time
+    +text('剩餘總時數: ','  hours')
+  .last__averagetime
+    +text('剩餘平均時數: ','  hours')
+.dashboard__time
+  &>*
+    margin-left: 10px
+  .nowTime
+    +text('時數: ','  hours')
+  .loseTime
+    +text('還差: ','  hours')
+  .date
+    +text('日期: ','')
+.days
+  +text('總天數: ','  days')
+.total__time
+  +text('總時數: ','  hours')
+.average__time
+  +text('平均時數: ','  hours')
+li
+  display: flex
+  justify-content: center
+  align-items: center
+i.material-icons
+  cursor: pointer
+  color: $blue
+  font-size: 24px
+  padding: 0 10px
+  border-right: 1px solid rgba(0,0,0,0.1)
+i.material-icons:hover 
+  color: $red

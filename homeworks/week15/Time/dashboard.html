@@ -1,0 +1,82 @@
+
+<html> 
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <title>dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css"/>
+    <script src="https://d3js.org/d3.v5.min.js"> </script>
+    <meta charset="utf-8"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <ul class="navbar-nav">
+        <li class="nav-item home"><i class="material-icons">home</i></li>
+        <li class="nav-item"> <i class="btn__total material-icons">bar_chart</i></li>
+        <li class="nav-item"> 
+          <div class="input-group">
+            <select class="custom-select mr-sm-2">
+              <option>選擇分類</option>
+              <option value="MTR">MTR</option>
+              <option value="ISS">ISS</option>
+              <option value="IAR">IAR</option>
+            </select>
+          </div>
+        </li>
+        <li class="nav-item"> 
+          <div class="input-group">
+            <input class="date__start form-control" type="date" placeholder="start date"/>
+          </div>
+        </li>
+        <li class="nav-item"> 
+          <div class="input-group">
+            <input class="date__end form-control" type="date" placeholder="start date"/>
+          </div>
+        </li>
+        <li class="nav-item"> 
+          <div class="input-group">
+            <input class="date__goal form-control" type="text" placeholder="total"/>
+          </div>
+        </li>
+        <li class="nav-item"> 
+          <div class="input-group">
+            <button class="date__submit btn  btn-primary" type="submit">search</button>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <div class="row justify-content-md-center">
+      <div class="col-md-2">
+        <h2 class="days">xxx</h2>
+      </div>
+      <div class="col-md-2">
+        <h2 class="total__time">xxx</h2>
+      </div>
+      <div class="col-md-2">
+        <h2 class="average__time">xxx</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="dashboard__time">
+        <div class="date">???</div>
+        <div class="nowTime">??? </div>
+        <div class="loseTime">???</div>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-10 board">
+          <div class="graph">請輸入範圍</div>
+          <div class="card range">
+            <p class="days">xxx</p>
+            <p class="total__time">xxx</p>
+            <p class="average__time">xxx</p>
+            <p class="last__days">xxx </p>
+            <p class="last__time">xxx</p>
+            <p class="last__averagetime">xxx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

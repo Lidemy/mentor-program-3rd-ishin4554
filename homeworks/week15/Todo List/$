@@ -1,0 +1,1 @@
+extension=mongodb.so /usr/local/etc/php/conf.d/php.ini
