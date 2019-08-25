@@ -1,3 +1,7 @@
-.board {
-  padding: 20px;
+.list__choose {
+  color: red;
+  font-weight: bold;
+}
+.graph {
+  border: 1px solid #000;
 }
