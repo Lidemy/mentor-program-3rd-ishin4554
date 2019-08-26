@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /site/
+RewriteRule ^$ index.html [NC,L]
+RewriteRule ^tasks/([\w]+)$ task.php?id=$1 [L,NC]
+RewriteRule ^tasks/achieve/([\w]+)$ task.php?id=$1 [L,NC]
+RewriteRule ^tasks$ task.php [L,NC]
+
