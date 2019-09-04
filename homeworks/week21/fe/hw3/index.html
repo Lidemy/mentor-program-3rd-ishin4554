@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <title>test</title>
+    
+  </head>
+  <style>
+    html {
+      background: #e3e0d7;
+      cursor: none;
+    }
+
+    .cursor{
+      width: 60px;
+      height: 60px;
+      font-size: 14px;
+      color: white;
+      position: absolute;
+      z-index: 30;
+      background: white;
+      border-radius: 50%;
+      transition: 0.1s;
+  }
+  </style>
+  <body>
+    <div class="cursor"> </div>
+    <div id='root'></div>
+    <script src='./dist/bundle.js'></script>
+  </body>
+</html>
