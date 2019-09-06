@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+- 10
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
+cache:
+  npm: true
+  directories:
+  - "~/.cache"
+install:
+- npm ci
+before_script:
+- npm start -- --silent &
+script:
+- npx cypress run
+deploy:
+  edge:
+    branch: v1.8.47
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: test2
+env:
+  global:
+    secure: I1cIX2xlMIffmFTktNj0cx5ec5//YSfxh4i9OHSzfuNC9YnTVqcDFNNDGP2UY6hTTlxfYVL/IvHR0ku+PrVY3tSVHmWWwADj3M3C5pJPS7gjjq42wZP/W1XAZCe/rNWF1/s8LhgFmCyu3fhtp2fWiYfU5SSb88jOdwekC5mwNgPQqVTXKj9XNQ9dHNSmkrAUtnf0aJ5ZSvwNzihcAR3UEkGZAqRCoDppS5GZXAwVMh0/uIftvIRjbUuuIil+zUe+yij/Ue4nTkNBlDuo8MA3EEEHjAy6X4qmoOBqwHtwW4xPOmTluJuOqgAAp8HtAz1wqnYovr4AOQtzhxmrwew+bOjyT7qUFto2Nsl3dfUoPXGkfPh5LWnQCl6IOXR4emJtS72b38fz5xYYZvu/vuWFY4XuG3qmnGKiu0LCkUpqwuHzWK0z7eUE8mrAq9owJKcY5kVwbUrdtYuwA0Lw4O34RxBspWzKzXNereV2+Hu2KbrZWH/NnWE+Gb5q1rOjHplStounV2FqCl9pezcbPDv9ushIfh8+mgXbtUylz9EHE2kK6ykvW1kIDjzbNgmeVTyNFfuknjD0/77MxmxxR5Qs2P/N9PsYDcvpqwnPvEv2lTKmWSOlC/XL48SUKtDrSHGmB08ScPUrMgz7FP5fsbalswG6Erth3tjFWdL4rRvcCfk=
