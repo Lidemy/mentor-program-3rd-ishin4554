@@ -1,0 +1,60 @@
+@import '../common/main.sass'
+@import '../common/style.sass'
+
+.article 
+  display: flex
+  justify-content: center
+  flex-direction: column
+  margin: 0 auto
+  .article__container
+    display: flex
+    flex-direction: column
+  .article__item 
+    z-index: 6
+    margin-bottom: 10px
+    .article__tags
+      // padding-left: 20px
+      margin-top: 10px
+      overflow: hidden
+      .tag
+        display: inline-block
+        margin-right: 10px
+        font-size: $small
+        background: $primary-color
+        color: $bg-color
+        padding: 5px
+        &::before
+          content: '#  '
+    .article__title
+      // padding: 0 20px
+      position: relative
+      margin: 10px 0
+      display: inline-block
+      font-size: $h2
+      color: $primary-color
+      +wiggling
+      &:hover
+        animation: backmove .5s
+
+.intro__slogan
+  position: -webkit-sticky
+  position: sticky
+  width: 100%
+  font-size: 30px
+  top: 100px
+  z-index: 7
+  font-weight: 500
+  background-color: $bg-color
+  padding: 20px 0
+  margin-bottom: 20px
+  border-bottom: 1px solid #000
+  .tab 
+    position: relative
+    display: inline-block
+    color: $primary-color
+    background: $surface-color
+    border: .5px solid transparent
+    padding: 0 10px
+    +wiggling(white)
+
+
