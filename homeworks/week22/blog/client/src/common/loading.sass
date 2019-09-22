@@ -1,0 +1,23 @@
+@import './main.sass'
+@import './style.sass'
+
+.loading__background
+  animation: hugify .5s 
+  display: block
+  position: fixed
+  margin-bottom: -100%
+  left: calc(50%-15px)
+  z-index: 11
+  width: 300%
+  height: 200%
+  color: $surface-color
+  background: $primary-color
+  text-align: center
+  font-size: 500px
+  font-weight: 800
+
+@keyframes hugify
+  0% 
+    transform: translate(100%, -200px)
+  100%
+    transform: translate(-100%, -200px)

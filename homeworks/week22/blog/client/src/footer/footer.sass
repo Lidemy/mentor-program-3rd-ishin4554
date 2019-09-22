@@ -1,0 +1,28 @@
+@import '../common/main.sass'
+@import '../common/style.sass'
+.footer 
+  display: flex
+  justify-content: space-around
+  align-items: center
+  background-color: $primary-color
+  border-top: 10px solid $surface-color
+  height: 300px
+  bottom: 0
+  z-index: 5
+  margin-top: 100px
+  .footer__title 
+    font-size: 150px
+    margin: 0
+    -webkit-text-fill-color: transparent
+    -webkit-text-stroke-width: 2px
+    -webkit-text-stroke-color: $bg-color
+
+  ul 
+    display: flex  
+    justify-content: center
+    flex-direction: column
+    list-style: none
+    li 
+      color: $surface-color
+      text-align: right
+      margin: 10px

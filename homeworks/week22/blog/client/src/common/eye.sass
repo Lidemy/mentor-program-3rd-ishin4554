@@ -1,0 +1,46 @@
+@import './main.sass'
+@import './style.sass'
+
+.cursor 
+  width: 30px
+  height: 30px
+  position: absolute
+  border-radius: 50%
+  border: 2px solid $primary-color
+  transform-origin: 50% 50%
+  transition: transform 0.1s
+  z-index: 10
+  svg 
+    width: 30px
+    height: 30px
+.hidden
+  visibility: hidden
+.hugify
+  width: 200px
+  height: 200px
+  pointer-events: none
+  border: none
+
+.left-moving 
+  text-align: right
+  right: -400px
+  animation: left 2s infinite linear
+
+@keyframes left
+  0%  
+    transform: translate(0, 0)
+  100%  
+    transform: translate(-400px, 0)
+
+
+.right-moving 
+  text-align: left
+  animation: right 2s infinite linear
+
+@keyframes right
+  0%  
+    transform: translate(0, 0)
+  100%  
+    transform: translate(400px, 0)
+
+
