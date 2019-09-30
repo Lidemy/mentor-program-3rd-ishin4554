@@ -1,0 +1,63 @@
+@import '../../common/style.sass'
+
+.input__container
+  width: 100%
+  form
+    .input__section
+      &>*
+        padding: 20px
+        width: 100%
+        margin-top: 15px
+        border: none
+        opacity: .5
+        &:focus
+          opacity: 9
+      textarea
+        height: 500px
+        resize: none
+      input:focus 
+        border: none
+        overflow: hidden
+        outline: none
+      textarea:focus 
+        border: none
+        overflow: hidden
+        outline: none
+  .input__nav
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
+    background: $surface-color
+    width: 100%
+    padding: 20px
+    &>*
+      display: inline-block
+      height: 30px
+    .input__preview
+      label
+        display: inline-block
+        padding: 7px
+        background: $primary-color
+        color: $surface-color
+      input[type='checkbox']
+        width: 0
+        height: 0
+        visibility: hidden
+    .nav__right
+      display: flex
+      &>*       
+        margin: 0 10px
+        border: none
+      input[type='submit']
+        color: $surface-color
+        background: $secondary-color
+      input[type='text']
+        border: none
+        border-bottom: 2px solid $primary-color
+.preview, .markdown
+  margin-top: 20px
+  padding: 20px
+  background: $surface-color
+  width: 100%
+  height: 500px

@@ -1,0 +1,53 @@
+@import '../../common/style.sass'
+
+.navigation 
+  top: 0
+  position: fixed
+  background-color: $bg-color
+  width: 100%
+  list-style: none 
+  z-index: 9 
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100px
+  border-bottom: 1px solid $primary-color
+  justify-content: space-between
+  strong
+    vertical-align: middle
+    font-weight: 800
+  .navigation__visitor 
+    display: flex
+    margin-left: 30px
+    & > *:first-child 
+      font-weight: 500
+      margin-right: 50px
+
+  .navigation__member 
+    display: flex
+    margin-right: 20px
+
+  .navigation__item 
+    padding: 0
+    margin-right: 20px
+    a    
+      position: relative
+      font-size: $small
+      color: black
+      text-decoration: none
+      &:hover 
+        &::after, &::before 
+          content: attr(text-value)
+          position: absolute
+          width: 100%
+          height: 100%
+          top: 0
+          left: 0
+          mix-blend-mode: multiply
+        &::after 
+          text-shadow: 2px 0px $red-color
+        &::before 
+          text-shadow: -2px 0px $blue-color
+
+.action 
+  color: red
