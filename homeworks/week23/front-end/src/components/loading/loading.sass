@@ -1,0 +1,19 @@
+@import '../../common/style.sass'
+
+.loading__background
+  position: fixed
+  display: block
+  width: 100px 
+  height: 100px
+  background: $primary-color
+  border-radius: 50%
+  top: 50%
+  left: 50%
+  transform: translate(-50px, -50px)
+  animation: hugify 3s 
+
+@keyframes hugify
+  0% 
+    transform: scale(0)
+  100%
+    transform: scale(20)
