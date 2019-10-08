@@ -1,0 +1,50 @@
+import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom'; 
+import storage from '../../utlis/storage';
+import './login.sass';
+class Login extends Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+    }
+  }
+
+  handleInputChange = (evt) => {
+    this.setState({
+      [evt.target.name] : evt.target.value
+    })
+  }
+
+  handleLoginForm = (evt) => {
+    evt.preventDefault()
+    const { login, history } = this.props;
+    const { username, password } = this.state;
+    login(username, password);
+    history.push('/work')
+  }
+
+  render() {
+    const {username, password} = this.state;
+    return(
+      <div className='login'>
+        <h1 className='login__title'>Login</h1>
+        <form onSubmit={this.handleLoginForm}>
+          <div className='login__username'>
+            Username: <br /> <input type='text' name='username' value={username} 
+              onChange={this.handleInputChange} />
+          </div>
+          <div className='login__password'>
+            Password: <br /> <input type='password' name='password' value={password} 
+              onChange={this.handleInputChange} />  
+          </div>
+          <input className='login__btn' type='submit' />
+        </form>
+
+      </div>
+    )
+  }
+}
+
+export default withRouter(Login);

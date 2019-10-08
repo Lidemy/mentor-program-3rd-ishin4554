@@ -1,0 +1,2 @@
+## Redux 如何解決非同步（例如說 call API 拿資料）的問題
+利用兩個 action 一個 action 發出 call api 指令，resolve 的時候發出另一個 action 來接收 promise resolve / error 的資料，所以當資料回來之後就會觸發 action 告知 redux 更新 store。不同的 Library 差別多是在 in, out middleware 的時候，形態不一樣，像是：observable 就是 action in, action out，而 thunk 就是 function。
