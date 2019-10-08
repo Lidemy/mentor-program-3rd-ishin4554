@@ -1,0 +1,42 @@
+@import '../../common/style.sass'
+
+.log
+  display: flex
+  justify-content: center
+  align-items: center
+  background-size: cover
+  background-blend-mode: multiply
+  background-color: $primary-color
+  h2
+    color: $bg-color
+    font-size: 40px
+  &:hover 
+    background: #000
+    +wiggling($red-color)
+.log__modal
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  width: 100%
+  height: 100%
+  background: rgba($primary-color, .7)
+  z-index: 10
+  .log__intro
+    margin: 0
+    width: 70%
+    text-align: left
+    &>*
+      margin: 0
+      display: inline-block
+    .log__title
+      font-weight: 500
+      &::after
+        content: '/ '
+  img
+    width: 70%
+    height: 60%

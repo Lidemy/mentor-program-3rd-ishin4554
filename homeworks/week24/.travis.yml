@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm install && cd client && npm install
+- npm test
+deploy:
+  provider: heroku
+  api_key: $API_KEY
+  app: mtrblog
+  on:
+    repo: ishin4554/portfolio
+env:
+  global:
+    secure: Fu75OY4if34KIX3pcy/q5weddGQ2CmAp7S4C+bbb6GpZ/S3fwBF69rs3IycwJJCb7V+TVAZGmSZVC7FjDWOXpWiU4ZUBr1mcn+ZmRiEradGlLuPL44l4xUX7uWV7TXHdxenF2a+ljYqDJJWtfdiHlA5PfaNWtbv3ZVfCblPQR7fNWChLcSlS9XqzBgccYKH09XtnSD1NH7KDBZE87WFR7mNGI019x4oWgzldIyc6XRTcz7WFFGKcAR4CMvrTKtkD5jkYnIabwwF1Sx6PaWoHIF3litTPThWuS2QiI9gYsACrTlKtSq79igxMWboQ45ME7W58REC0/wOiZIX7usLHbXLhvUsbaVbe5jPchbvW/n7L0IDMwmAgZH6AKzptTkQWfiSHVX5OgFf67s4JoWJrhNYlEL6E2J06fN/gw6PsLWdrxJo8HIrqu/s/AgurbvtKZFJJmUzfoucF5ukcpDQZokpqKH2clKrbyP+jmskoZS6vQqdOyEgz8gQ6dY50K3vl6I0WYr7XMjkluwPPGoIhWDB6xM2MXulvrdXH6Z26dCZ6w8CK2rZjo5FbQB7GxP+hYGPpnTFI0Qs17dc1vtHDh6VjTq1f6TlfNKVGKFz3me0F4ZNZT82uuDy/3GBL5WlsITRznor+igBZXwJjf3KK7OUpe2g5w3DYsZaOE8O5GUw=

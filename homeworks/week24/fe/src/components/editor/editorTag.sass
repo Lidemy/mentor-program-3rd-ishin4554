@@ -1,0 +1,39 @@
+@import '../../common/style.sass'
+
+.tag__wrapper
+  position: relative
+  width: 200px
+  &>input
+    width: 100%
+  .tag__container
+    box-sizing: border-box
+    display: flex
+    flex-wrap: wrap
+    border: 1px solid #e2e2e2
+    width: 100%
+    &>*
+      display: inline-block
+      padding: 5px
+    .tag
+      margin: 2px
+      border: 1px solid #000
+      input[type='checkbox']
+        visibility: hidden
+        width: 0
+        height: 0
+    .selected
+      border: 1px solid $secondary-color
+      color: $surface-color
+      background-color: $secondary-color
+    .added
+      margin: 2px
+      color: $surface-color
+      background: $primary-color
+      &::before
+        content: '+ '
+    .suggested
+      background: $surface-color
+
+
+        
+    
